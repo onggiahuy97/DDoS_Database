@@ -1,0 +1,55 @@
+2025-03-21 09:34:46,150 - INFO - Server initialized for postgresql database
+2025-03-21 09:34:46,150 - ERROR - Server error: [Errno 48] Address already in use
+2025-03-21 09:35:07,217 - INFO - Server initialized for postgresql database
+2025-03-21 09:35:07,217 - ERROR - Server error: [Errno 48] Address already in use
+2025-03-21 09:35:09,448 - INFO - Server initialized for postgresql database
+2025-03-21 09:35:09,448 - INFO - Server listening on port 8080
+2025-03-21 09:36:59,167 - INFO - Server shutdown initiated
+2025-03-21 09:37:45,003 - INFO - Server initialized for postgresql database
+2025-03-21 09:37:45,004 - INFO - Server listening on port 8080
+2025-03-21 09:37:57,088 - INFO - New connection from 127.0.0.1:56050
+2025-03-21 09:37:57,089 - INFO - Connected to database for client 127.0.0.1
+2025-03-21 09:39:39,303 - INFO - New connection from 127.0.0.1:56052
+2025-03-21 09:39:39,303 - INFO - Connected to database for client 127.0.0.1
+2025-03-21 09:39:59,416 - ERROR - Error in client-to-db forwarding for 127.0.0.1: [Errno 32] Broken pipe
+2025-03-21 09:39:59,417 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 09:42:42,997 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 09:42:49,622 - INFO - Server shutdown initiated
+2025-03-21 09:57:42,671 - INFO - Server initialized for postgresql database
+2025-03-21 09:57:42,671 - INFO - Server listening on port 8080
+2025-03-21 09:57:47,452 - INFO - New connection from 127.0.0.1:56065
+2025-03-21 09:57:47,453 - INFO - Connected to database for client 127.0.0.1
+2025-03-21 14:28:15,229 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 14:28:50,897 - INFO - New connection from 127.0.0.1:56491
+2025-03-21 14:28:50,897 - INFO - Connected to database for client 127.0.0.1
+2025-03-21 14:29:04,031 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 15:01:51,153 - INFO - New connection from 127.0.0.1:56590
+2025-03-21 15:01:51,154 - INFO - Connected to database for client 127.0.0.1
+2025-03-21 15:02:27,460 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 15:02:30,106 - INFO - New connection from 127.0.0.1:56594
+2025-03-21 15:02:30,107 - INFO - Connected to database for client 127.0.0.1
+2025-03-21 15:02:38,652 - ERROR - Error in client-to-db forwarding for 127.0.0.1: [Errno 32] Broken pipe
+2025-03-21 15:02:38,652 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 15:03:18,422 - INFO - New connection from 127.0.0.1:56596
+2025-03-21 15:03:18,422 - INFO - Connected to database for client 127.0.0.1
+2025-03-21 15:03:24,025 - ERROR - Error in client-to-db forwarding for 127.0.0.1: [Errno 32] Broken pipe
+2025-03-21 15:03:24,025 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 15:03:31,239 - INFO - New connection from 127.0.0.1:56598
+2025-03-21 15:03:31,240 - INFO - Connected to database for client 127.0.0.1
+2025-03-21 15:03:32,214 - ERROR - Error in client-to-db forwarding for 127.0.0.1: [Errno 32] Broken pipe
+2025-03-21 15:03:32,214 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 15:04:15,502 - INFO - New connection from 127.0.0.1:56600
+2025-03-21 15:04:15,502 - INFO - Connected to database for client 127.0.0.1
+2025-03-21 15:04:54,297 - ERROR - Error in client-to-db forwarding for 127.0.0.1: [Errno 32] Broken pipe
+2025-03-21 15:04:54,298 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 15:05:42,274 - INFO - Server shutdown initiated
+2025-03-21 15:05:47,817 - INFO - Server initialized for postgresql database
+2025-03-21 15:05:47,817 - INFO - Server listening on port 8080
+2025-03-21 15:05:51,501 - INFO - New connection from 127.0.0.1:56602
+2025-03-21 15:05:51,502 - INFO - Connected to database for client 127.0.0.1
+2025-03-21 15:05:53,968 - ERROR - Error in client-to-db forwarding for 127.0.0.1: [Errno 32] Broken pipe
+2025-03-21 15:05:53,968 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 15:06:49,943 - INFO - New connection from 127.0.0.1:56607
+2025-03-21 15:06:49,943 - INFO - Connected to database for client 127.0.0.1
+2025-03-21 15:06:51,193 - ERROR - Error in client-to-db forwarding for 127.0.0.1: [Errno 32] Broken pipe
+2025-03-21 15:06:51,193 - INFO - Connection from 127.0.0.1 closed
