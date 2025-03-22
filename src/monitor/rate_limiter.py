@@ -101,11 +101,27 @@ class RateLimiter:
         
         return True
 
-# Usage example
-if __name__ == "__main__":
-    limiter = RateLimiter()
-    print(limiter.check_rate_limit("192.168.1.1"))
-    # Simulate multiple requests
-    for _ in range(200):
-        limiter.check_rate_limit("192.168.1.1")
-    print(limiter.check_rate_limit("192.168.1.1"))
+    def get_client_stats(self):
+        """Return statistics about client query rates"""
+        stats = {}
+        now = time.time()
+        
+        for ip, queries in self.query_counts.items():
+            # Clean old entries first
+            valid_queries = [(ts, count) for ts, count in queries if now - ts < self.window_size]
+            
+            if valid_queries:
+                total = sum(count for _, count in valid_queries)
+                earliest_ts = min(ts for ts, _ in valid_queries)
+                window = now - earliest_ts
+                
+                if window > 0:
+                    rate = (total / window) * 60  # Queries per minute
+                    stats[ip] = {
+                        'count': total,
+                        'rate': rate,
+                        'is_blacklisted': ip in self.blacklist
+                    }
+        
+        return stats
+

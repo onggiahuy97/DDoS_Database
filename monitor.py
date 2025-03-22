@@ -5,6 +5,8 @@ import logging
 import yaml
 import os
 import sys
+import psycopg2
+import re
 from collections import defaultdict
 from colorama import Fore, Style, init
 
@@ -33,6 +35,10 @@ class DBMonitor:
         self.db_host = config['database']['host']
         self.db_port = config['database']['port']
         self.db_type = config['database']['type']
+
+        self.db_name = config['database']['db_name']
+        self.db_user = config['database']['user']
+        self.db_password = config['database']['password']
         
         # Rate limiting
         self.window_size = config['detection']['window_size']
@@ -104,47 +110,105 @@ class DBMonitor:
         client_ip = address[0]
         
         try:
-            # Connect to the actual database
-            db_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            db_socket.connect((self.db_host, self.db_port))
+            # Receive the query
+            data = client_socket.recv(4096)
+            if not data:
+                logger.info(f"Empty connection from {client_ip}")
+                client_socket.close()
+                return
+
+            # # Add spoofed IP detection
+            # header_match = re.search(r'X-Client-IP:\s*([^\r\n]+)', data)
+            #
+            # if header_match:
+            #     spoofed_ip = header_match.group(1).strip()
+            #     print(f"Client with real IP {client_ip} is using spoofed IP {spoofed_ip}")
+            #     client_ip = spoofed_ip  # Use the spoofed IP for your detection logic
+    
             
-            print(f"{Fore.CYAN}Client {client_ip} connected to database{Style.RESET_ALL}")
-            logger.info(f"Connected to database for client {client_ip}")
+            # Log the query
+            self.log_query(client_ip, data)
             
-            # Set up for bidirectional communication
-            client_to_db = threading.Thread(
-                target=self.forward_data,
-                args=(client_socket, db_socket, client_ip, "client-to-db")
-            )
-            db_to_client = threading.Thread(
-                target=self.forward_data,
-                args=(db_socket, client_socket, client_ip, "db-to-client")
-            )
+            # Check rate limit after logging the query
+            # if not self.check_rate_limit(client_ip):
+            #     print(f"{Fore.RED}Rate limit exceeded for {client_ip} - Rejecting query{Style.RESET_ALL}")
+            #     client_socket.send(b"ERROR: Rate limit exceeded\n")
+            #     client_socket.close()
+            #     return
             
-            client_to_db.daemon = True
-            db_to_client.daemon = True
-            
-            client_to_db.start()
-            db_to_client.start()
-            
-            # Wait for both directions to complete
-            client_to_db.join()
-            db_to_client.join()
-            
-        except ConnectionRefusedError:
-            error_msg = f"Error: Could not connect to database at {self.db_host}:{self.db_port}"
-            print(f"{Fore.RED}{error_msg}{Style.RESET_ALL}")
-            client_socket.send(f"{error_msg}\n".encode())
-            logger.error(error_msg)
+            # Connect to the database and execute the query
+            try:
+                # Establish database connection
+                if self.db_type.lower() == 'postgresql':
+                    db_conn = psycopg2.connect(
+                        host=self.db_host,
+                        port=self.db_port,
+                        dbname=self.db_name,
+                        user=self.db_user,
+                        password=self.db_password
+                    )
+                    
+                    # Create a cursor
+                    cursor = db_conn.cursor()
+                    
+                    # Execute the query
+                    query_str = data.decode('utf-8')
+                    # Remove the header to get the actual query
+                    # query_str = re.sub(r'X-Client-IP:[^\r\n]+\r\n\r\n', '', data)
+                    print(f"{Fore.CYAN}Executing query: {query_str}{Style.RESET_ALL}")
+                    cursor.execute(query_str)
+                    
+                    # Fetch results
+                    try:
+                        results = cursor.fetchall()
+                        
+                        # Get column names
+                        column_names = [desc[0] for desc in cursor.description]
+                        
+                        # Format results
+                        response = f"Query executed successfully.\n\n"
+                        response += " | ".join(column_names) + "\n"
+                        response += "-" * (sum(len(name) for name in column_names) + (3 * (len(column_names) - 1))) + "\n"
+                        
+                        for row in results:
+                            response += " | ".join(str(val) for val in row) + "\n"
+                        
+                        # Send response back to client
+                        client_socket.send(response.encode())
+                        
+                    except psycopg2.ProgrammingError:
+                        # Command executed successfully but no rows to fetch (e.g., INSERT)
+                        response = f"Command executed successfully. Rows affected: {cursor.rowcount}\n"
+                        client_socket.send(response.encode())
+                    
+                    # Commit the transaction
+                    db_conn.commit()
+                    
+                    # Close cursor and connection
+                    cursor.close()
+                    db_conn.close()
+                    
+                elif self.db_type.lower() == 'mysql':
+                    # Add MySQL implementation here
+                    pass
+                    
+                else:
+                    error_msg = f"Unsupported database type: {self.db_type}"
+                    print(f"{Fore.RED}{error_msg}{Style.RESET_ALL}")
+                    client_socket.send(f"ERROR: {error_msg}\n".encode())
+                    
+            except Exception as db_error:
+                error_msg = f"Database error: {str(db_error)}"
+                print(f"{Fore.RED}{error_msg}{Style.RESET_ALL}")
+                client_socket.send(f"ERROR: {error_msg}\n".encode())
+                logger.error(error_msg)
+                
         except Exception as e:
             print(f"{Fore.RED}Error handling client {client_ip}: {str(e)}{Style.RESET_ALL}")
             logger.error(f"Error handling client {client_ip}: {str(e)}")
         finally:
             # Clean up
-            self.active_connections -= 1
             client_socket.close()
-            if 'db_socket' in locals():
-                db_socket.close()
             logger.info(f"Connection from {client_ip} closed")
     
     def forward_data(self, source, destination, client_ip, direction):
@@ -160,6 +224,16 @@ class DBMonitor:
                 if direction == "client-to-db":
                     # This is a query from client to DB - log it
                     self.log_query(client_ip, data)
+                    try:
+                        print(f"{Fore.YELLOW}Query from {client_ip}: {data.decode().strip()}{Style.RESET_ALL}")
+                    except UnicodeDecodeError:
+                        print(f"{Fore.YELLOW}Query from {client_ip}: {data}{Style.RESET_ALL}")
+                elif direction == "db-to-client":
+                    # Log response from DB to client
+                    try:
+                        print(f"{Fore.CYAN}Response to {client_ip}: {data[:100].decode().strip()}...{Style.RESET_ALL}")
+                    except UnicodeDecodeError:
+                        print(f"{Fore.CYAN}Binary response to {client_ip}: {len(data)} bytes{Style.RESET_ALL}")
                 
                 # Forward data
                 destination.send(data)

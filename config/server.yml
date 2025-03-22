@@ -6,7 +6,9 @@ database:
   type: postgresql  # Specify your database type: postgresql, mysql, sqlserver
   host: localhost   # Database host
   port: 5432        # Default PostgreSQL port (change for other DBMSs)
-  name: testdb
+  db_name: testdb
+  user: huyong97
+  password: password
   max_connections: 100  # Maximum connections to allow
 
 detection:

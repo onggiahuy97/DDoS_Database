@@ -12,14 +12,12 @@ class DBClient:
         self.host = host
         self.port = port
         self.socket = None
-        self.connected = False
     
     def connect(self):
         """Connect to the monitoring server"""
         try:
             self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.socket.connect((self.host, self.port))
-            self.connected = True
             print(f"{Fore.GREEN}Connected to server at {self.host}:{self.port}{Style.RESET_ALL}")
             return True
         except ConnectionRefusedError:
@@ -33,32 +31,66 @@ class DBClient:
         """Disconnect from the server"""
         if self.socket:
             self.socket.close()
-            self.connected = False
             print(f"{Fore.YELLOW}Disconnected from server{Style.RESET_ALL}")
     
     def send_query(self, query):
         """Send a query to the server"""
-        if not self.connected:
+        if not self.socket:
             print(f"{Fore.RED}Not connected to server{Style.RESET_ALL}")
             return None
         
         try:
             # Send the query
+            print(f"{Fore.YELLOW}Sending: {query}{Style.RESET_ALL}")
             self.socket.send(query.encode())
             
             # Wait for response with timeout
             self.socket.settimeout(10.0)  # 10 second timeout
-            # response = self.socket.recv(4096)
-            response  = b"pass"
-            # self.socket.settimeout(None)  # Reset timeout
             
-            return response.decode()
+            # Receive response data
+            chunks = []
+            while True:
+                try:
+                    chunk = self.socket.recv(4096)
+                    if not chunk:
+                        break
+                    chunks.append(chunk)
+                    
+                    # If we have a small chunk, we might be done
+                    if len(chunk) < 4096:
+                        # Try to get more data, but with a short timeout
+                        self.socket.settimeout(0.5)
+                        continue
+                except socket.timeout:
+                    # No more data
+                    break
+            
+            self.socket.settimeout(None)  # Reset timeout
+            
+            if not chunks:
+                print(f"{Fore.RED}No data received{Style.RESET_ALL}")
+                return None
+            
+            # Combine all chunks
+            response = b''.join(chunks)
+            
+            # Process the response
+            try:
+                # Try to decode as UTF-8
+                return response.decode('utf-8')
+            except UnicodeDecodeError:
+                # If it's binary data (e.g., from PostgreSQL)
+                return f"Binary response received ({len(response)} bytes)"
+            
         except socket.timeout:
             print(f"{Fore.RED}Timeout waiting for response{Style.RESET_ALL}")
             return None
         except Exception as e:
             print(f"{Fore.RED}Error sending query: {str(e)}{Style.RESET_ALL}")
-            self.connected = False
+            # Only close the socket if there's an error
+            if self.socket:
+                self.socket.close()
+                self.socket = None
             return None
     
     def stress_test(self, query, count, delay=0.1):
@@ -75,6 +107,13 @@ class DBClient:
             response = self.send_query(query)
             if response:
                 success_count += 1
+            
+            # If the socket was closed due to an error, try to reconnect
+            if self.socket is None:
+                print(f"\n{Fore.YELLOW}Connection lost, attempting to reconnect...{Style.RESET_ALL}")
+                if not self.connect():
+                    print(f"{Fore.RED}Failed to reconnect. Aborting stress test.{Style.RESET_ALL}")
+                    break
             
             # Add delay between queries
             if i < count - 1:  # Skip delay after the last query
@@ -116,6 +155,13 @@ def interactive_mode(client):
             if response:
                 print(f"{Fore.CYAN}=== Response ==={Style.RESET_ALL}")
                 print(response)
+            
+            # Check if we need to reconnect
+            if client.socket is None:
+                print(f"{Fore.YELLOW}Connection lost, attempting to reconnect...{Style.RESET_ALL}")
+                if not client.connect():
+                    print(f"{Fore.RED}Failed to reconnect. Exiting interactive mode.{Style.RESET_ALL}")
+                    break
 
 def main():
     # Parse command line arguments

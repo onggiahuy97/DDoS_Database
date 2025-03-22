@@ -53,3 +53,533 @@
 2025-03-21 15:06:49,943 - INFO - Connected to database for client 127.0.0.1
 2025-03-21 15:06:51,193 - ERROR - Error in client-to-db forwarding for 127.0.0.1: [Errno 32] Broken pipe
 2025-03-21 15:06:51,193 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 15:28:10,358 - INFO - Server shutdown initiated
+2025-03-21 15:28:11,749 - INFO - Server initialized for postgresql database
+2025-03-21 15:28:11,749 - INFO - Server listening on port 8080
+2025-03-21 15:28:17,496 - INFO - New connection from 127.0.0.1:56628
+2025-03-21 15:28:17,498 - INFO - Connected to database for client 127.0.0.1
+2025-03-21 15:43:56,836 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 15:43:58,980 - INFO - New connection from 127.0.0.1:56698
+2025-03-21 15:43:58,981 - INFO - Connected to database for client 127.0.0.1
+2025-03-21 15:44:14,806 - ERROR - Error in client-to-db forwarding for 127.0.0.1: [Errno 32] Broken pipe
+2025-03-21 15:44:14,807 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 15:46:18,878 - INFO - Server shutdown initiated
+2025-03-21 15:46:21,725 - INFO - Server initialized for postgresql database
+2025-03-21 15:46:21,725 - INFO - Server listening on port 8080
+2025-03-21 15:57:27,388 - INFO - New connection from 127.0.0.1:56707
+2025-03-21 15:57:27,390 - INFO - Connected to database for client 127.0.0.1
+2025-03-21 16:29:31,958 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 16:29:33,182 - INFO - New connection from 127.0.0.1:56748
+2025-03-21 16:29:33,182 - INFO - Connected to database for client 127.0.0.1
+2025-03-21 16:29:49,071 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 16:52:39,250 - INFO - Server shutdown initiated
+2025-03-21 16:52:40,734 - INFO - Server initialized for postgresql database
+2025-03-21 16:52:40,734 - INFO - Server listening on port 8080
+2025-03-21 16:52:46,937 - INFO - New connection from 127.0.0.1:56787
+2025-03-21 16:52:46,938 - INFO - Connected to database for client 127.0.0.1
+2025-03-21 16:57:22,875 - INFO - Server shutdown initiated
+2025-03-21 16:57:24,428 - INFO - Server initialized for postgresql database
+2025-03-21 16:57:24,428 - INFO - Server listening on port 8080
+2025-03-21 16:57:29,555 - INFO - New connection from 127.0.0.1:56825
+2025-03-21 16:57:29,557 - INFO - Connected to database for client 127.0.0.1
+2025-03-21 17:10:24,381 - INFO - Server shutdown initiated
+2025-03-21 17:10:26,594 - INFO - Server initialized for postgresql database
+2025-03-21 17:10:26,594 - INFO - Server listening on port 8080
+2025-03-21 17:10:37,120 - INFO - New connection from 127.0.0.1:56837
+2025-03-21 17:10:41,030 - ERROR - Database error: name 'psycopg2' is not defined
+2025-03-21 17:10:41,030 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:11:52,082 - INFO - Server shutdown initiated
+2025-03-21 17:11:53,739 - INFO - Server initialized for postgresql database
+2025-03-21 17:11:53,739 - INFO - Server listening on port 8080
+2025-03-21 17:11:55,706 - INFO - New connection from 127.0.0.1:56840
+2025-03-21 17:11:58,697 - ERROR - Database error: 'DBMonitor' object has no attribute 'db_name'
+2025-03-21 17:11:58,698 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:14:44,302 - INFO - Server shutdown initiated
+2025-03-21 17:14:45,838 - INFO - Server initialized for postgresql database
+2025-03-21 17:14:45,838 - INFO - Server listening on port 8080
+2025-03-21 17:14:48,990 - INFO - New connection from 127.0.0.1:56845
+2025-03-21 17:14:51,932 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:15:06,166 - INFO - New connection from 127.0.0.1:56847
+2025-03-21 17:15:09,837 - ERROR - Database error: relation "abc" does not exist
+LINE 1: select * from abc;
+                      ^
+
+2025-03-21 17:15:09,837 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:15:36,544 - INFO - New connection from 127.0.0.1:56849
+2025-03-21 17:15:40,234 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:20:44,082 - INFO - Server shutdown initiated
+2025-03-21 17:20:46,763 - INFO - Rate limiter initialized
+2025-03-21 17:20:46,763 - INFO - Server initialized for postgresql database
+2025-03-21 17:20:46,763 - INFO - Server listening on port 8080
+2025-03-21 17:20:51,108 - INFO - New connection from 127.0.0.1:56882
+2025-03-21 17:20:51,108 - ERROR - Server error: float division by zero
+2025-03-21 17:23:16,966 - INFO - Server initialized for postgresql database
+2025-03-21 17:23:16,966 - INFO - Server listening on port 8080
+2025-03-21 17:23:19,606 - INFO - New connection from 127.0.0.1:56883
+2025-03-21 17:23:28,598 - ERROR - Database error: syntax error at or near "select"
+LINE 1: select select * from users;
+               ^
+
+2025-03-21 17:23:28,598 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:23:33,098 - INFO - New connection from 127.0.0.1:56885
+2025-03-21 17:23:33,783 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:31:18,736 - INFO - New connection from 127.0.0.1:56906
+2025-03-21 17:31:20,684 - ERROR - Database error: syntax error at or near "sele"
+LINE 1: sele
+        ^
+
+2025-03-21 17:31:20,684 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:31:35,214 - INFO - Server shutdown initiated
+2025-03-21 17:31:40,910 - INFO - Server initialized for postgresql database
+2025-03-21 17:31:40,910 - INFO - Server listening on port 8080
+2025-03-21 17:31:44,533 - INFO - New connection from 127.0.0.1:56908
+2025-03-21 17:31:47,058 - ERROR - Database error: syntax error at or near "sdfsdf"
+LINE 1: sdfsdf
+        ^
+
+2025-03-21 17:31:47,058 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:53,019 - INFO - New connection from 127.0.0.1:56918
+2025-03-21 17:34:55,710 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,380 - INFO - New connection from 127.0.0.1:56920
+2025-03-21 17:34:57,387 - ERROR - Database error: syntax error at or near "from"
+LINE 1: from colorama import Fore, Style, init
+        ^
+
+2025-03-21 17:34:57,387 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,388 - INFO - New connection from 127.0.0.1:56922
+2025-03-21 17:34:57,394 - ERROR - Database error: syntax error at or near "self"
+LINE 1: self.socket = None
+        ^
+
+2025-03-21 17:34:57,394 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,395 - INFO - New connection from 127.0.0.1:56924
+2025-03-21 17:34:57,399 - ERROR - Database error: syntax error at or near "self"
+LINE 1: self.socket.connect((self.host, self.port))
+        ^
+
+2025-03-21 17:34:57,399 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,400 - INFO - New connection from 127.0.0.1:56926
+2025-03-21 17:34:57,403 - ERROR - Database error: syntax error at or near "print"
+LINE 1: print(f"{Fore.RED}Error: Connection refused. Is the server r...
+        ^
+
+2025-03-21 17:34:57,403 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,403 - INFO - New connection from 127.0.0.1:56928
+2025-03-21 17:34:57,406 - ERROR - Database error: syntax error at or near "def"
+LINE 1: def disconnect(self):
+        ^
+
+2025-03-21 17:34:57,407 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,407 - INFO - New connection from 127.0.0.1:56930
+2025-03-21 17:34:57,410 - ERROR - Database error: syntax error at or near "print"
+LINE 1: print(f"{Fore.YELLOW}Disconnected from server{Style.RESET_AL...
+        ^
+
+2025-03-21 17:34:57,410 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,410 - INFO - New connection from 127.0.0.1:56932
+2025-03-21 17:34:57,413 - ERROR - Database error: syntax error at or near "print"
+LINE 1: print(f"{Fore.RED}Not connected to server{Style.RESET_ALL}")
+        ^
+
+2025-03-21 17:34:57,413 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,413 - INFO - New connection from 127.0.0.1:56934
+2025-03-21 17:34:57,416 - ERROR - Database error: syntax error at or near "print"
+LINE 1: print(f"{Fore.YELLOW}Sending: {query}{Style.RESET_ALL}")
+        ^
+
+2025-03-21 17:34:57,416 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,416 - INFO - New connection from 127.0.0.1:56936
+2025-03-21 17:34:57,418 - ERROR - Database error: syntax error at or near "self"
+LINE 1: self.socket.settimeout(10.0)  # 10 second timeout
+        ^
+
+2025-03-21 17:34:57,418 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,419 - INFO - New connection from 127.0.0.1:56938
+2025-03-21 17:34:57,421 - ERROR - Database error: syntax error at or near "try"
+LINE 1: try:
+        ^
+
+2025-03-21 17:34:57,421 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,421 - INFO - New connection from 127.0.0.1:56940
+2025-03-21 17:34:57,424 - ERROR - Database error: syntax error at or near "chunks"
+LINE 1: chunks.append(chunk)
+        ^
+
+2025-03-21 17:34:57,424 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,424 - INFO - New connection from 127.0.0.1:56942
+2025-03-21 17:34:57,426 - ERROR - Database error: syntax error at or near "self"
+LINE 1: self.socket.settimeout(0.5)
+        ^
+
+2025-03-21 17:34:57,426 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,427 - INFO - New connection from 127.0.0.1:56944
+2025-03-21 17:34:57,429 - ERROR - Database error: syntax error at or near "self"
+LINE 1: self.socket.settimeout(None)  # Reset timeout
+        ^
+
+2025-03-21 17:34:57,429 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,430 - INFO - New connection from 127.0.0.1:56946
+2025-03-21 17:34:57,432 - ERROR - Database error: syntax error at or near "response"
+LINE 1: response = b''.join(chunks)
+        ^
+
+2025-03-21 17:34:57,432 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,432 - INFO - New connection from 127.0.0.1:56948
+2025-03-21 17:34:57,435 - ERROR - Database error: syntax error at or near "return"
+LINE 1: return response.decode('utf-8')
+        ^
+
+2025-03-21 17:34:57,435 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,435 - INFO - New connection from 127.0.0.1:56950
+2025-03-21 17:34:57,438 - ERROR - Database error: syntax error at or near "return"
+LINE 1: return None
+        ^
+
+2025-03-21 17:34:57,438 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,438 - INFO - New connection from 127.0.0.1:56952
+2025-03-21 17:34:57,440 - ERROR - Database error: syntax error at or near "return"
+LINE 1: return None
+        ^
+
+2025-03-21 17:34:57,440 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,440 - INFO - New connection from 127.0.0.1:56954
+2025-03-21 17:34:57,442 - ERROR - Database error: syntax error at or near "success_count"
+LINE 1: success_count = 0
+        ^
+
+2025-03-21 17:34:57,442 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,443 - INFO - New connection from 127.0.0.1:56956
+2025-03-21 17:34:57,445 - ERROR - Database error: syntax error at or near "sys"
+LINE 1: sys.stdout.flush()
+        ^
+
+2025-03-21 17:34:57,445 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,445 - INFO - New connection from 127.0.0.1:56958
+2025-03-21 17:34:57,448 - ERROR - Database error: syntax error at or near "#"
+LINE 1: # Add delay between queries
+        ^
+
+2025-03-21 17:34:57,448 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,448 - INFO - New connection from 127.0.0.1:56960
+2025-03-21 17:34:57,450 - ERROR - Database error: syntax error at or near "queries_per_sec"
+LINE 1: queries_per_sec = count / duration if duration > 0 else 0
+        ^
+
+2025-03-21 17:34:57,450 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,451 - INFO - New connection from 127.0.0.1:56962
+2025-03-21 17:34:57,453 - ERROR - Database error: syntax error at or near "print"
+LINE 1: print(f"  Rate: {queries_per_sec:.2f} queries/second")
+        ^
+
+2025-03-21 17:34:57,453 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,453 - INFO - New connection from 127.0.0.1:56964
+2025-03-21 17:34:57,456 - ERROR - Database error: syntax error at or near "print"
+LINE 1: print("Type your SQL queries (type 'exit' to quit, 'stress' ...
+        ^
+
+2025-03-21 17:34:57,456 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,456 - INFO - New connection from 127.0.0.1:56966
+2025-03-21 17:34:57,458 - ERROR - Database error: syntax error at or near "if"
+LINE 1: if user_input.lower() == 'exit':
+        ^
+
+2025-03-21 17:34:57,458 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,458 - INFO - New connection from 127.0.0.1:56968
+2025-03-21 17:34:57,460 - ERROR - Database error: syntax error at or near "test_query"
+LINE 1: test_query = input("Enter query to use for stress test: ")
+        ^
+
+2025-03-21 17:34:57,460 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,461 - INFO - New connection from 127.0.0.1:56970
+2025-03-21 17:34:57,463 - ERROR - Database error: syntax error at or near "client"
+LINE 1: client.stress_test(test_query, count, delay)
+        ^
+
+2025-03-21 17:34:57,463 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,463 - INFO - New connection from 127.0.0.1:56972
+2025-03-21 17:34:57,465 - ERROR - Database error: syntax error at or near "#"
+LINE 1: # Send the query
+        ^
+
+2025-03-21 17:34:57,465 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,465 - INFO - New connection from 127.0.0.1:56974
+2025-03-21 17:34:57,467 - ERROR - Database error: syntax error at or near "print"
+LINE 1: print(f"{Fore.CYAN}=== Response ==={Style.RESET_ALL}")
+        ^
+
+2025-03-21 17:34:57,467 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,468 - INFO - New connection from 127.0.0.1:56976
+2025-03-21 17:34:57,470 - ERROR - Database error: syntax error at or near "parser"
+LINE 1: parser = argparse.ArgumentParser(description='Database Clien...
+        ^
+
+2025-03-21 17:34:57,470 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,470 - INFO - New connection from 127.0.0.1:56978
+2025-03-21 17:34:57,472 - ERROR - Database error: syntax error at or near "parser"
+LINE 1: parser.add_argument('--query', help='Query to use for stress...
+        ^
+
+2025-03-21 17:34:57,472 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,472 - INFO - New connection from 127.0.0.1:56980
+2025-03-21 17:34:57,474 - ERROR - Database error: syntax error at or near "#"
+LINE 1: # Create client and connect
+        ^
+
+2025-03-21 17:34:57,474 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,474 - INFO - New connection from 127.0.0.1:56982
+2025-03-21 17:34:57,477 - ERROR - Database error: syntax error at or near "if"
+LINE 1: if args.stress and args.query:
+        ^
+
+2025-03-21 17:34:57,477 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,477 - INFO - New connection from 127.0.0.1:56984
+2025-03-21 17:34:57,479 - ERROR - Database error: syntax error at or near "#"
+LINE 1: # Start interactive mode
+        ^
+
+2025-03-21 17:34:57,479 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:57,479 - INFO - New connection from 127.0.0.1:56986
+2025-03-21 17:34:57,481 - ERROR - Database error: syntax error at or near "if"
+LINE 1: if __name__ == "__main__":
+        ^
+
+2025-03-21 17:34:57,481 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:34:59,715 - INFO - New connection from 127.0.0.1:56988
+2025-03-21 17:35:00,339 - ERROR - Database error: syntax error at or near "sdf"
+LINE 1: sdf
+        ^
+
+2025-03-21 17:35:00,339 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:35:03,147 - INFO - New connection from 127.0.0.1:56990
+2025-03-21 17:35:03,148 - WARNING - Rate limit exceeded for 127.0.0.1: 290.06 queries/min
+2025-03-21 17:35:05,813 - INFO - New connection from 127.0.0.1:56991
+2025-03-21 17:35:05,814 - WARNING - Rate limit exceeded for 127.0.0.1: 213.60 queries/min
+2025-03-21 17:35:06,309 - INFO - New connection from 127.0.0.1:56992
+2025-03-21 17:35:06,309 - WARNING - Rate limit exceeded for 127.0.0.1: 203.62 queries/min
+2025-03-21 17:35:06,771 - INFO - New connection from 127.0.0.1:56993
+2025-03-21 17:35:06,771 - WARNING - Rate limit exceeded for 127.0.0.1: 195.13 queries/min
+2025-03-21 17:35:07,261 - INFO - New connection from 127.0.0.1:56994
+2025-03-21 17:35:07,261 - WARNING - Rate limit exceeded for 127.0.0.1: 186.85 queries/min
+2025-03-21 17:35:07,709 - INFO - New connection from 127.0.0.1:56995
+2025-03-21 17:35:07,709 - WARNING - Rate limit exceeded for 127.0.0.1: 179.88 queries/min
+2025-03-21 17:35:08,155 - INFO - New connection from 127.0.0.1:56996
+2025-03-21 17:35:08,155 - WARNING - Rate limit exceeded for 127.0.0.1: 173.44 queries/min
+2025-03-21 17:35:12,686 - INFO - New connection from 127.0.0.1:56997
+2025-03-21 17:35:12,686 - WARNING - Rate limit exceeded for 127.0.0.1: 127.17 queries/min
+2025-03-21 17:35:20,969 - INFO - New connection from 127.0.0.1:56998
+2025-03-21 17:35:20,969 - WARNING - Rate limit exceeded for 127.0.0.1: 85.48 queries/min
+2025-03-21 17:35:33,565 - INFO - New connection from 127.0.0.1:56999
+2025-03-21 17:35:33,565 - WARNING - Rate limit exceeded for 127.0.0.1: 57.05 queries/min
+2025-03-21 17:35:36,995 - INFO - New connection from 127.0.0.1:57000
+2025-03-21 17:35:36,995 - WARNING - Rate limit exceeded for 127.0.0.1: 52.31 queries/min
+2025-03-21 17:36:13,753 - INFO - New connection from 127.0.0.1:57001
+2025-03-21 17:36:14,850 - INFO - Empty connection from 127.0.0.1
+2025-03-21 17:36:14,851 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:36:16,376 - INFO - New connection from 127.0.0.1:57002
+2025-03-21 17:36:19,166 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:36:31,605 - INFO - New connection from 127.0.0.1:57006
+2025-03-21 17:36:37,553 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:36:48,935 - INFO - New connection from 127.0.0.1:57008
+2025-03-21 17:36:49,911 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:36:51,375 - INFO - New connection from 127.0.0.1:57010
+2025-03-21 17:36:51,694 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:36:52,225 - INFO - New connection from 127.0.0.1:57012
+2025-03-21 17:36:52,481 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:36:53,006 - INFO - New connection from 127.0.0.1:57014
+2025-03-21 17:36:53,278 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:36:53,776 - INFO - New connection from 127.0.0.1:57016
+2025-03-21 17:36:54,048 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:36:54,558 - INFO - New connection from 127.0.0.1:57018
+2025-03-21 17:36:54,834 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:36:55,347 - INFO - New connection from 127.0.0.1:57020
+2025-03-21 17:36:55,616 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:36:56,144 - INFO - New connection from 127.0.0.1:57022
+2025-03-21 17:36:56,405 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:36:56,921 - INFO - New connection from 127.0.0.1:57024
+2025-03-21 17:36:57,172 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:36:57,684 - INFO - New connection from 127.0.0.1:57026
+2025-03-21 17:36:57,956 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:36:58,187 - INFO - New connection from 127.0.0.1:57028
+2025-03-21 17:36:58,476 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:36:58,992 - INFO - New connection from 127.0.0.1:57030
+2025-03-21 17:36:59,271 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:36:59,809 - INFO - New connection from 127.0.0.1:57032
+2025-03-21 17:37:00,398 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:41:36,666 - INFO - New connection from 127.0.0.1:57036
+2025-03-21 17:41:42,109 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:42:39,727 - INFO - New connection from 127.0.0.1:57038
+2025-03-21 17:42:49,188 - INFO - Empty connection from 127.0.0.1
+2025-03-21 17:42:49,188 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:42:51,310 - INFO - Server shutdown initiated
+2025-03-21 17:46:18,462 - INFO - Server initialized for postgresql database
+2025-03-21 17:46:18,462 - INFO - Server listening on port 8080
+2025-03-21 17:46:22,035 - INFO - New connection from 127.0.0.1:57041
+2025-03-21 17:46:28,718 - INFO - Empty connection from 127.0.0.1
+2025-03-21 17:46:28,718 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:46:40,925 - INFO - New connection from 127.0.0.1:57042
+2025-03-21 17:46:40,935 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:46:41,431 - INFO - New connection from 127.0.0.1:57044
+2025-03-21 17:46:41,440 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:46:41,936 - INFO - New connection from 127.0.0.1:57046
+2025-03-21 17:46:41,944 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:50:50,360 - INFO - Server shutdown initiated
+2025-03-21 17:50:52,008 - INFO - Server initialized for postgresql database
+2025-03-21 17:50:52,009 - INFO - Server listening on port 8080
+2025-03-21 17:50:56,690 - INFO - New connection from 127.0.0.1:57056
+2025-03-21 17:50:57,192 - INFO - New connection from 127.0.0.1:57057
+2025-03-21 17:50:57,192 - INFO - New connection from 127.0.0.1:57058
+2025-03-21 17:50:57,197 - INFO - New connection from 127.0.0.1:57059
+2025-03-21 17:50:57,695 - INFO - New connection from 127.0.0.1:57060
+2025-03-21 17:50:58,198 - INFO - New connection from 127.0.0.1:57061
+2025-03-21 17:50:58,198 - INFO - New connection from 127.0.0.1:57062
+2025-03-21 17:50:58,199 - INFO - New connection from 127.0.0.1:57063
+2025-03-21 17:50:59,203 - INFO - New connection from 127.0.0.1:57064
+2025-03-21 17:50:59,204 - INFO - New connection from 127.0.0.1:57065
+2025-03-21 17:50:59,209 - INFO - New connection from 127.0.0.1:57066
+2025-03-21 17:51:00,206 - INFO - New connection from 127.0.0.1:57067
+2025-03-21 17:51:00,206 - INFO - New connection from 127.0.0.1:57068
+2025-03-21 17:51:00,207 - INFO - New connection from 127.0.0.1:57069
+2025-03-21 17:51:01,576 - INFO - Server shutdown initiated
+2025-03-21 17:51:57,810 - INFO - Server initialized for postgresql database
+2025-03-21 17:51:57,810 - INFO - Server listening on port 8080
+2025-03-21 17:52:01,161 - INFO - New connection from 127.0.0.1:57072
+2025-03-21 17:52:01,663 - INFO - New connection from 127.0.0.1:57073
+2025-03-21 17:52:01,664 - INFO - New connection from 127.0.0.1:57074
+2025-03-21 17:52:01,669 - INFO - New connection from 127.0.0.1:57075
+2025-03-21 17:52:02,169 - INFO - New connection from 127.0.0.1:57076
+2025-03-21 17:52:02,671 - INFO - New connection from 127.0.0.1:57077
+2025-03-21 17:52:02,673 - INFO - New connection from 127.0.0.1:57079
+2025-03-21 17:52:02,673 - INFO - New connection from 127.0.0.1:57078
+2025-03-21 17:52:03,677 - INFO - New connection from 127.0.0.1:57080
+2025-03-21 17:52:03,682 - INFO - New connection from 127.0.0.1:57081
+2025-03-21 17:52:03,685 - INFO - New connection from 127.0.0.1:57082
+2025-03-21 17:52:04,684 - INFO - New connection from 127.0.0.1:57084
+2025-03-21 17:52:04,685 - INFO - New connection from 127.0.0.1:57083
+2025-03-21 17:52:04,686 - INFO - New connection from 127.0.0.1:57085
+2025-03-21 17:52:05,691 - INFO - New connection from 127.0.0.1:57087
+2025-03-21 17:52:05,692 - INFO - New connection from 127.0.0.1:57086
+2025-03-21 17:52:05,694 - INFO - New connection from 127.0.0.1:57088
+2025-03-21 17:52:06,696 - INFO - New connection from 127.0.0.1:57089
+2025-03-21 17:52:06,697 - INFO - New connection from 127.0.0.1:57090
+2025-03-21 17:52:06,698 - INFO - New connection from 127.0.0.1:57091
+2025-03-21 17:52:16,806 - INFO - Server shutdown initiated
+2025-03-21 17:52:18,112 - INFO - Server initialized for postgresql database
+2025-03-21 17:52:18,112 - INFO - Server listening on port 8080
+2025-03-21 17:52:21,200 - INFO - New connection from 127.0.0.1:57092
+2025-03-21 17:52:21,706 - INFO - New connection from 127.0.0.1:57093
+2025-03-21 17:52:21,707 - INFO - New connection from 127.0.0.1:57094
+2025-03-21 17:52:21,712 - INFO - New connection from 127.0.0.1:57095
+2025-03-21 17:52:22,208 - INFO - New connection from 127.0.0.1:57096
+2025-03-21 17:52:22,712 - INFO - New connection from 127.0.0.1:57097
+2025-03-21 17:52:22,713 - INFO - New connection from 127.0.0.1:57098
+2025-03-21 17:52:22,714 - INFO - New connection from 127.0.0.1:57099
+2025-03-21 17:52:23,718 - INFO - New connection from 127.0.0.1:57100
+2025-03-21 17:52:23,719 - INFO - New connection from 127.0.0.1:57101
+2025-03-21 17:52:23,720 - INFO - New connection from 127.0.0.1:57102
+2025-03-21 17:53:10,797 - INFO - Server shutdown initiated
+2025-03-21 17:53:12,013 - INFO - Server initialized for postgresql database
+2025-03-21 17:53:12,014 - INFO - Server listening on port 8080
+2025-03-21 17:53:15,357 - INFO - New connection from 127.0.0.1:57103
+2025-03-21 17:53:15,357 - ERROR - Error handling client 127.0.0.1: cannot use a string pattern on a bytes-like object
+2025-03-21 17:53:15,357 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:53:15,863 - INFO - New connection from 127.0.0.1:57104
+2025-03-21 17:53:15,863 - ERROR - Error handling client 127.0.0.1: cannot use a string pattern on a bytes-like object
+2025-03-21 17:53:15,864 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:53:16,368 - INFO - New connection from 127.0.0.1:57105
+2025-03-21 17:53:16,368 - ERROR - Error handling client 127.0.0.1: cannot use a string pattern on a bytes-like object
+2025-03-21 17:53:16,369 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:53:17,366 - INFO - New connection from 127.0.0.1:57106
+2025-03-21 17:53:17,367 - ERROR - Error handling client 127.0.0.1: cannot use a string pattern on a bytes-like object
+2025-03-21 17:53:17,367 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:53:17,876 - INFO - New connection from 127.0.0.1:57107
+2025-03-21 17:53:17,877 - ERROR - Error handling client 127.0.0.1: cannot use a string pattern on a bytes-like object
+2025-03-21 17:53:17,877 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:53:18,380 - INFO - New connection from 127.0.0.1:57108
+2025-03-21 17:53:18,380 - ERROR - Error handling client 127.0.0.1: cannot use a string pattern on a bytes-like object
+2025-03-21 17:53:18,380 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:53:19,378 - INFO - New connection from 127.0.0.1:57109
+2025-03-21 17:53:19,379 - ERROR - Error handling client 127.0.0.1: cannot use a string pattern on a bytes-like object
+2025-03-21 17:53:19,379 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:53:19,888 - INFO - New connection from 127.0.0.1:57110
+2025-03-21 17:53:19,889 - ERROR - Error handling client 127.0.0.1: cannot use a string pattern on a bytes-like object
+2025-03-21 17:53:19,889 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:53:20,389 - INFO - New connection from 127.0.0.1:57111
+2025-03-21 17:53:20,390 - ERROR - Error handling client 127.0.0.1: cannot use a string pattern on a bytes-like object
+2025-03-21 17:53:20,390 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:53:31,203 - INFO - Server shutdown initiated
+2025-03-21 17:53:33,760 - INFO - Server initialized for postgresql database
+2025-03-21 17:53:33,760 - INFO - Server listening on port 8080
+2025-03-21 17:53:35,789 - INFO - New connection from 127.0.0.1:57112
+2025-03-21 17:53:35,790 - ERROR - Error handling client 127.0.0.1: cannot use a string pattern on a bytes-like object
+2025-03-21 17:53:35,790 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:53:36,292 - INFO - New connection from 127.0.0.1:57113
+2025-03-21 17:53:36,293 - ERROR - Error handling client 127.0.0.1: cannot use a string pattern on a bytes-like object
+2025-03-21 17:53:36,293 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:53:36,796 - INFO - New connection from 127.0.0.1:57114
+2025-03-21 17:53:36,797 - ERROR - Error handling client 127.0.0.1: cannot use a string pattern on a bytes-like object
+2025-03-21 17:53:36,797 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:53:37,800 - INFO - New connection from 127.0.0.1:57115
+2025-03-21 17:53:37,800 - ERROR - Error handling client 127.0.0.1: cannot use a string pattern on a bytes-like object
+2025-03-21 17:53:37,800 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:53:38,305 - INFO - New connection from 127.0.0.1:57116
+2025-03-21 17:53:38,307 - ERROR - Error handling client 127.0.0.1: cannot use a string pattern on a bytes-like object
+2025-03-21 17:53:38,307 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:53:38,803 - INFO - New connection from 127.0.0.1:57117
+2025-03-21 17:53:38,804 - ERROR - Error handling client 127.0.0.1: cannot use a string pattern on a bytes-like object
+2025-03-21 17:53:38,804 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:54:10,511 - INFO - Server shutdown initiated
+2025-03-21 17:54:12,430 - INFO - Server initialized for postgresql database
+2025-03-21 17:54:12,431 - INFO - Server listening on port 8080
+2025-03-21 17:54:15,300 - INFO - New connection from 127.0.0.1:57118
+2025-03-21 17:54:15,310 - ERROR - Database error: syntax error at or near "X"
+LINE 1: X-Client-IP: 81.146.169.166
+        ^
+
+2025-03-21 17:54:15,310 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:54:15,806 - INFO - New connection from 127.0.0.1:57120
+2025-03-21 17:54:15,814 - ERROR - Database error: syntax error at or near "X"
+LINE 1: X-Client-IP: 70.29.112.122
+        ^
+
+2025-03-21 17:54:15,814 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:54:16,309 - INFO - New connection from 127.0.0.1:57122
+2025-03-21 17:54:16,318 - ERROR - Database error: syntax error at or near "X"
+LINE 1: X-Client-IP: 20.15.215.190
+        ^
+
+2025-03-21 17:54:16,318 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:54:17,318 - INFO - New connection from 127.0.0.1:57124
+2025-03-21 17:54:17,327 - ERROR - Database error: syntax error at or near "X"
+LINE 1: X-Client-IP: 81.146.169.166
+        ^
+
+2025-03-21 17:54:17,328 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:54:25,703 - INFO - New connection from 127.0.0.1:57126
+2025-03-21 17:54:28,404 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:54:36,469 - INFO - Server shutdown initiated
+2025-03-21 17:54:55,376 - INFO - Server initialized for postgresql database
+2025-03-21 17:54:55,376 - INFO - Server listening on port 8080
+2025-03-21 17:54:57,739 - INFO - New connection from 127.0.0.1:57133
+2025-03-21 17:54:58,726 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:55:11,298 - INFO - New connection from 127.0.0.1:57135
+2025-03-21 17:55:11,618 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:55:12,153 - INFO - New connection from 127.0.0.1:57137
+2025-03-21 17:55:12,888 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:55:14,030 - INFO - New connection from 127.0.0.1:57139
+2025-03-21 17:55:14,499 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:55:20,881 - INFO - New connection from 127.0.0.1:57141
+2025-03-21 17:55:21,153 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:55:21,638 - INFO - New connection from 127.0.0.1:57143
+2025-03-21 17:55:21,877 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:55:22,328 - INFO - New connection from 127.0.0.1:57145
+2025-03-21 17:55:22,560 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:55:22,772 - INFO - New connection from 127.0.0.1:57147
+2025-03-21 17:55:22,999 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:55:23,206 - INFO - New connection from 127.0.0.1:57149
+2025-03-21 17:55:23,438 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:55:23,868 - INFO - New connection from 127.0.0.1:57151
+2025-03-21 17:55:24,118 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:55:24,536 - INFO - New connection from 127.0.0.1:57153
+2025-03-21 17:55:24,768 - INFO - Connection from 127.0.0.1 closed
+2025-03-21 17:55:25,228 - INFO - New connection from 127.0.0.1:57155
+2025-03-21 17:55:35,981 - INFO - Server shutdown initiated
