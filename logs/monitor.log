@@ -583,3 +583,445 @@ LINE 1: X-Client-IP: 81.146.169.166
 2025-03-21 17:55:24,768 - INFO - Connection from 127.0.0.1 closed
 2025-03-21 17:55:25,228 - INFO - New connection from 127.0.0.1:57155
 2025-03-21 17:55:35,981 - INFO - Server shutdown initiated
+2025-03-31 19:06:27,741 - INFO - Server initialized for postgresql database
+2025-03-31 19:06:27,741 - INFO - Server listening on port 8080
+2025-03-31 19:06:32,804 - INFO - Server shutdown initiated
+2025-03-31 19:11:28,999 - INFO - Server initialized for postgresql database
+2025-03-31 19:11:28,999 - INFO - Server listening on port 8080
+2025-03-31 19:11:44,684 - INFO - Server shutdown initiated
+2025-03-31 19:11:53,991 - INFO - Server initialized for postgresql database
+2025-03-31 19:11:53,992 - INFO - Server listening on port 8080
+2025-03-31 19:12:02,115 - INFO - Server shutdown initiated
+2025-03-31 19:12:15,306 - INFO - Server initialized for postgresql database
+2025-03-31 19:12:15,306 - INFO - Server listening on port 8080
+2025-03-31 19:12:35,128 - INFO - Rate limiter initialized
+2025-03-31 19:12:35,128 - INFO - Server initialized for postgresql database
+2025-03-31 19:12:35,128 - ERROR - Server error: [Errno 48] Address already in use
+2025-03-31 19:12:47,378 - INFO - New connection from 127.0.0.1:50549
+2025-03-31 19:12:50,845 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 19:13:45,025 - INFO - New connection from 127.0.0.1:50552
+2025-03-31 19:13:48,090 - ERROR - Database error: syntax error at or near "exitg"
+LINE 1: exitg
+        ^
+
+2025-03-31 19:13:48,090 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 19:13:59,718 - INFO - Server shutdown initiated
+2025-03-31 19:14:01,534 - INFO - Server initialized for postgresql database
+2025-03-31 19:14:01,535 - INFO - Server listening on port 8080
+2025-03-31 19:14:03,575 - INFO - New connection from 127.0.0.1:50555
+2025-03-31 19:14:06,288 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 19:17:59,607 - INFO - Server shutdown initiated
+2025-03-31 19:19:48,492 - INFO - Server initialized for postgresql database
+2025-03-31 19:19:48,492 - INFO - Server listening on port 8080
+2025-03-31 19:19:55,110 - INFO - New connection from 127.0.0.1:50581
+2025-03-31 19:19:58,228 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 19:59:22,499 - INFO - Server shutdown initiated
+2025-03-31 19:59:24,120 - INFO - Server initialized for postgresql database
+2025-03-31 19:59:24,120 - INFO - Server listening on port 8080
+2025-03-31 20:02:23,663 - INFO - Server shutdown initiated
+2025-03-31 20:02:25,357 - INFO - Server initialized for postgresql database
+2025-03-31 20:02:25,357 - INFO - Server listening on port 8080
+2025-03-31 20:02:38,937 - INFO - New connection from 127.0.0.1:50615
+2025-03-31 20:02:45,141 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:03:12,377 - INFO - Server shutdown initiated
+2025-03-31 20:03:14,131 - INFO - Server initialized for postgresql database
+2025-03-31 20:03:14,131 - INFO - Server listening on port 8080
+2025-03-31 20:03:25,536 - INFO - New connection from 127.0.0.1:50617
+2025-03-31 20:03:32,140 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:03:46,819 - INFO - New connection from 127.0.0.1:50619
+2025-03-31 20:03:47,678 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:03:53,204 - INFO - New connection from 127.0.0.1:50621
+2025-03-31 20:23:10,154 - INFO - Server shutdown initiated
+2025-03-31 20:23:11,813 - INFO - Server initialized for postgresql database
+2025-03-31 20:23:11,814 - INFO - Server listening on port 8080
+2025-03-31 20:23:19,548 - INFO - New connection from 127.0.0.1:50644
+2025-03-31 20:23:19,569 - ERROR - Database error: syntax error at or near "threading"
+LINE 1: import threading
+               ^
+
+2025-03-31 20:23:19,569 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,569 - INFO - New connection from 127.0.0.1:50646
+2025-03-31 20:23:19,573 - ERROR - Database error: syntax error at or near "yaml"
+LINE 1: import yaml
+               ^
+
+2025-03-31 20:23:19,573 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,573 - INFO - New connection from 127.0.0.1:50648
+2025-03-31 20:23:19,576 - ERROR - Database error: syntax error at or near "re"
+LINE 1: import re
+               ^
+
+2025-03-31 20:23:19,576 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,577 - INFO - New connection from 127.0.0.1:50650
+2025-03-31 20:23:19,580 - ERROR - Database error: syntax error at or near "#"
+LINE 1: # Initialize colorama for cross-platform colored terminal ou...
+        ^
+
+2025-03-31 20:23:19,580 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,580 - INFO - New connection from 127.0.0.1:50652
+2025-03-31 20:23:19,583 - ERROR - Database error: syntax error at or near "if"
+LINE 1: if not os.path.exists('logs'):
+        ^
+
+2025-03-31 20:23:19,583 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,583 - INFO - New connection from 127.0.0.1:50654
+2025-03-31 20:23:19,586 - ERROR - Database error: syntax error at or near "logging"
+LINE 1: logging.basicConfig(
+        ^
+
+2025-03-31 20:23:19,586 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,587 - INFO - New connection from 127.0.0.1:50656
+2025-03-31 20:23:19,589 - ERROR - Database error: syntax error at or near "format"
+LINE 1: format='%(asctime)s - %(levelname)s - %(message)s'
+        ^
+
+2025-03-31 20:23:19,589 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,590 - INFO - New connection from 127.0.0.1:50658
+2025-03-31 20:23:19,593 - ERROR - Database error: syntax error at or near "def"
+LINE 1: def __init__(self, config_path='config/server.yml'):
+        ^
+
+2025-03-31 20:23:19,593 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,593 - INFO - New connection from 127.0.0.1:50660
+2025-03-31 20:23:19,596 - ERROR - Database error: syntax error at or near "self"
+LINE 1: self.listen_port = config['server']['listen_port']
+        ^
+
+2025-03-31 20:23:19,596 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,596 - INFO - New connection from 127.0.0.1:50662
+2025-03-31 20:23:19,599 - ERROR - Database error: syntax error at or near "self"
+LINE 1: self.db_name = config['database']['db_name']
+        ^
+
+2025-03-31 20:23:19,599 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,599 - INFO - New connection from 127.0.0.1:50664
+2025-03-31 20:23:19,602 - ERROR - Database error: syntax error at or near "self"
+LINE 1: self.window_size = config['detection']['window_size']
+        ^
+
+2025-03-31 20:23:19,602 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,602 - INFO - New connection from 127.0.0.1:50666
+2025-03-31 20:23:19,605 - ERROR - Database error: syntax error at or near "self"
+LINE 1: self.connection_count = 0
+        ^
+
+2025-03-31 20:23:19,605 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,605 - INFO - New connection from 127.0.0.1:50668
+2025-03-31 20:23:19,607 - ERROR - Database error: syntax error at or near "def"
+LINE 1: def start(self):
+        ^
+
+2025-03-31 20:23:19,607 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,607 - INFO - New connection from 127.0.0.1:50670
+2025-03-31 20:23:19,610 - ERROR - Database error: syntax error at or near "#"
+LINE 1: # Allow port reuse
+        ^
+
+2025-03-31 20:23:19,610 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,610 - INFO - New connection from 127.0.0.1:50672
+2025-03-31 20:23:19,612 - ERROR - Database error: syntax error at or near "server"
+LINE 1: server.bind(('0.0.0.0', self.listen_port))
+        ^
+
+2025-03-31 20:23:19,612 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,613 - INFO - New connection from 127.0.0.1:50674
+2025-03-31 20:23:19,615 - ERROR - Database error: syntax error at or near "logger"
+LINE 1: logger.info(f"Server listening on port {self.listen_port}")
+        ^
+
+2025-03-31 20:23:19,615 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,616 - INFO - New connection from 127.0.0.1:50676
+2025-03-31 20:23:19,618 - ERROR - Database error: syntax error at or near "while"
+LINE 1: while True:
+        ^
+
+2025-03-31 20:23:19,618 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,618 - INFO - New connection from 127.0.0.1:50678
+2025-03-31 20:23:19,620 - ERROR - Database error: syntax error at or near "#"
+LINE 1: # Handle each client in a separate thread
+        ^
+
+2025-03-31 20:23:19,620 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,621 - INFO - New connection from 127.0.0.1:50680
+2025-03-31 20:23:19,623 - ERROR - Database error: syntax error at or near "except"
+LINE 1: except KeyboardInterrupt:
+        ^
+
+2025-03-31 20:23:19,623 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,624 - INFO - New connection from 127.0.0.1:50682
+2025-03-31 20:23:19,626 - ERROR - Database error: syntax error at or near "logger"
+LINE 1: logger.error(f"Server error: {str(e)}")
+        ^
+
+2025-03-31 20:23:19,626 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,626 - INFO - New connection from 127.0.0.1:50684
+2025-03-31 20:23:19,628 - ERROR - Database error: syntax error at or near """"Handle a client connection""""
+LINE 1: """Handle a client connection"""
+        ^
+
+2025-03-31 20:23:19,628 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,629 - INFO - New connection from 127.0.0.1:50686
+2025-03-31 20:23:19,631 - ERROR - Database error: syntax error at or near "data"
+LINE 1: data = client_socket.recv(4096)
+        ^
+
+2025-03-31 20:23:19,631 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,631 - INFO - New connection from 127.0.0.1:50688
+2025-03-31 20:23:19,633 - ERROR - Database error: syntax error at or near "return"
+LINE 1: return
+        ^
+
+2025-03-31 20:23:19,633 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,634 - INFO - New connection from 127.0.0.1:50690
+2025-03-31 20:23:19,636 - ERROR - Database error: syntax error at or near "try"
+LINE 1: try:
+        ^
+
+2025-03-31 20:23:19,636 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,636 - INFO - New connection from 127.0.0.1:50692
+2025-03-31 20:23:19,638 - ERROR - Database error: syntax error at or near "port"
+LINE 1: port=self.db_port,
+        ^
+
+2025-03-31 20:23:19,638 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,638 - INFO - New connection from 127.0.0.1:50694
+2025-03-31 20:23:19,640 - ERROR - Database error: syntax error at or near ")"
+LINE 1: )
+        ^
+
+2025-03-31 20:23:19,641 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,641 - INFO - New connection from 127.0.0.1:50696
+2025-03-31 20:23:19,643 - ERROR - Database error: syntax error at or near "query_str"
+LINE 1: query_str = data.decode('utf-8')
+        ^
+
+2025-03-31 20:23:19,643 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,643 - INFO - New connection from 127.0.0.1:50698
+2025-03-31 20:23:19,646 - ERROR - Database error: syntax error at or near "cursor"
+LINE 1: cursor.execute(query_str)
+        ^
+
+2025-03-31 20:23:19,646 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,646 - INFO - New connection from 127.0.0.1:50700
+2025-03-31 20:23:19,648 - ERROR - Database error: syntax error at or near "column_names"
+LINE 1: column_names = [desc[0] for desc in cursor.description]
+        ^
+
+2025-03-31 20:23:19,648 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,649 - INFO - New connection from 127.0.0.1:50702
+2025-03-31 20:23:19,651 - ERROR - Database error: syntax error at or near "response"
+LINE 1: response += "-" * (sum(len(name) for name in column_names) +...
+        ^
+
+2025-03-31 20:23:19,651 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,651 - INFO - New connection from 127.0.0.1:50704
+2025-03-31 20:23:19,653 - ERROR - Database error: syntax error at or near "client_socket"
+LINE 1: client_socket.send(response.encode())
+        ^
+
+2025-03-31 20:23:19,653 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,653 - INFO - New connection from 127.0.0.1:50706
+2025-03-31 20:23:19,655 - ERROR - Database error: syntax error at or near "#"
+LINE 1: # Commit the transaction
+        ^
+
+2025-03-31 20:23:19,655 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,656 - INFO - New connection from 127.0.0.1:50708
+2025-03-31 20:23:19,658 - ERROR - Database error: syntax error at or near "db_conn"
+LINE 1: db_conn.close()
+        ^
+
+2025-03-31 20:23:19,658 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,658 - INFO - New connection from 127.0.0.1:50710
+2025-03-31 20:23:19,660 - ERROR - Database error: syntax error at or near "else"
+LINE 1: else:
+        ^
+
+2025-03-31 20:23:19,660 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,660 - INFO - New connection from 127.0.0.1:50712
+2025-03-31 20:23:19,662 - ERROR - Database error: syntax error at or near "client_socket"
+LINE 1: client_socket.send(f"ERROR: {error_msg}\n".encode())
+        ^
+
+2025-03-31 20:23:19,662 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,663 - INFO - New connection from 127.0.0.1:50714
+2025-03-31 20:23:19,665 - ERROR - Database error: syntax error at or near "logger"
+LINE 1: logger.error(error_msg)
+        ^
+
+2025-03-31 20:23:19,665 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,665 - INFO - New connection from 127.0.0.1:50716
+2025-03-31 20:23:19,667 - ERROR - Database error: syntax error at or near "finally"
+LINE 1: finally:
+        ^
+
+2025-03-31 20:23:19,667 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,667 - INFO - New connection from 127.0.0.1:50718
+2025-03-31 20:23:19,670 - ERROR - Database error: syntax error at or near """"Forward data between sockets and log the traffic""""
+LINE 1: """Forward data between sockets and log the traffic"""
+        ^
+
+2025-03-31 20:23:19,670 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,670 - INFO - New connection from 127.0.0.1:50720
+2025-03-31 20:23:19,672 - ERROR - Database error: syntax error at or near "if"
+LINE 1: if not data:
+        ^
+
+2025-03-31 20:23:19,672 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,672 - INFO - New connection from 127.0.0.1:50722
+2025-03-31 20:23:19,674 - ERROR - Database error: syntax error at or near "#"
+LINE 1: # This is a query from client to DB - log it
+        ^
+
+2025-03-31 20:23:19,674 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,674 - INFO - New connection from 127.0.0.1:50724
+2025-03-31 20:23:19,676 - ERROR - Database error: syntax error at or near "except"
+LINE 1: except UnicodeDecodeError:
+        ^
+
+2025-03-31 20:23:19,676 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,677 - INFO - New connection from 127.0.0.1:50726
+2025-03-31 20:23:19,679 - ERROR - Database error: syntax error at or near "try"
+LINE 1: try:
+        ^
+
+2025-03-31 20:23:19,679 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,679 - INFO - New connection from 127.0.0.1:50728
+2025-03-31 20:23:19,681 - ERROR - Database error: syntax error at or near "#"
+LINE 1: # Forward data
+        ^
+
+2025-03-31 20:23:19,681 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,681 - INFO - New connection from 127.0.0.1:50730
+2025-03-31 20:23:19,684 - ERROR - Database error: syntax error at or near "def"
+LINE 1: def log_query(self, client_ip, data):
+        ^
+
+2025-03-31 20:23:19,684 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,684 - INFO - New connection from 127.0.0.1:50732
+2025-03-31 20:23:19,686 - ERROR - Database error: syntax error at or near "'logs/queries.log'"
+LINE 1: with open('logs/queries.log', 'a') as log_file:
+                  ^
+
+2025-03-31 20:23:19,686 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,686 - INFO - New connection from 127.0.0.1:50734
+2025-03-31 20:23:19,688 - ERROR - Database error: syntax error at or near "self"
+LINE 1: self.query_counts[client_ip].append((now, 1))
+        ^
+
+2025-03-31 20:23:19,688 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,689 - INFO - New connection from 127.0.0.1:50736
+2025-03-31 20:23:19,691 - ERROR - Database error: syntax error at or near "if"
+LINE 1: if now - ts < self.window_size
+        ^
+
+2025-03-31 20:23:19,691 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,691 - INFO - New connection from 127.0.0.1:50738
+2025-03-31 20:23:19,693 - ERROR - Database error: syntax error at or near "while"
+LINE 1: while True:
+        ^
+
+2025-03-31 20:23:19,693 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,693 - INFO - New connection from 127.0.0.1:50740
+2025-03-31 20:23:19,695 - ERROR - Database error: syntax error at or near "uptime_str"
+LINE 1: uptime_str = f"{int(uptime // 3600):02d}:{int((uptime % 3600...
+        ^
+
+2025-03-31 20:23:19,695 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,696 - INFO - New connection from 127.0.0.1:50742
+2025-03-31 20:23:19,698 - ERROR - Database error: syntax error at or near "print"
+LINE 1: print(f"{Fore.GREEN}===== DB Monitor Statistics ====={Style....
+        ^
+
+2025-03-31 20:23:19,698 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,698 - INFO - New connection from 127.0.0.1:50744
+2025-03-31 20:23:19,700 - ERROR - Database error: syntax error at or near "print"
+LINE 1: print(f"Database: {self.db_type} on {self.db_host}:{self.db_...
+        ^
+
+2025-03-31 20:23:19,700 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,700 - INFO - New connection from 127.0.0.1:50746
+2025-03-31 20:23:19,702 - ERROR - Database error: syntax error at or near "if"
+LINE 1: if not self.query_counts:
+        ^
+
+2025-03-31 20:23:19,702 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,703 - INFO - New connection from 127.0.0.1:50748
+2025-03-31 20:23:19,704 - ERROR - Database error: syntax error at or near "now"
+LINE 1: now = time.time()
+        ^
+
+2025-03-31 20:23:19,704 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,705 - INFO - New connection from 127.0.0.1:50750
+2025-03-31 20:23:19,707 - ERROR - Database error: syntax error at or near "if"
+LINE 1: if valid_queries:
+        ^
+
+2025-03-31 20:23:19,707 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,707 - INFO - New connection from 127.0.0.1:50752
+2025-03-31 20:23:19,712 - ERROR - Database error: syntax error at or near "rate"
+LINE 1: rate = (total / window) * 60
+        ^
+
+2025-03-31 20:23:19,712 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,712 - INFO - New connection from 127.0.0.1:50754
+2025-03-31 20:23:19,714 - ERROR - Database error: syntax error at or near "if"
+LINE 1: if __name__ == "__main__":
+        ^
+
+2025-03-31 20:23:19,714 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:19,714 - INFO - New connection from 127.0.0.1:50756
+2025-03-31 20:23:19,716 - ERROR - Database error: syntax error at or near "print"
+LINE 1: print(f"{Fore.RED}Fatal error: {str(e)}{Style.RESET_ALL}")
+        ^
+
+2025-03-31 20:23:19,716 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:26,018 - INFO - New connection from 127.0.0.1:50758
+2025-03-31 20:23:30,209 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:49,970 - INFO - New connection from 127.0.0.1:50760
+2025-03-31 20:23:50,484 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:51,494 - INFO - New connection from 127.0.0.1:50762
+2025-03-31 20:23:52,007 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:23:53,011 - INFO - New connection from 127.0.0.1:50764
+2025-03-31 20:23:53,526 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:24:13,566 - INFO - New connection from 127.0.0.1:50766
+2025-03-31 20:24:20,853 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:24:32,385 - INFO - Server shutdown initiated
+2025-03-31 20:24:33,646 - INFO - Server initialized for postgresql database
+2025-03-31 20:24:33,646 - INFO - Server listening on port 8080
+2025-03-31 20:24:39,180 - INFO - New connection from 127.0.0.1:50773
+2025-03-31 20:24:42,247 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:25:45,870 - INFO - Server shutdown initiated
+2025-03-31 20:25:46,991 - INFO - Server initialized for postgresql database
+2025-03-31 20:25:46,991 - INFO - Server listening on port 8080
+2025-03-31 20:25:50,939 - INFO - New connection from 127.0.0.1:50776
+2025-03-31 20:25:53,991 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:26:03,834 - INFO - New connection from 127.0.0.1:50779
+2025-03-31 20:26:04,349 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:26:05,098 - INFO - New connection from 127.0.0.1:50781
+2025-03-31 20:26:05,489 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:26:06,296 - INFO - New connection from 127.0.0.1:50783
+2025-03-31 20:26:07,322 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:28:02,498 - INFO - Server shutdown initiated
+2025-03-31 20:28:03,689 - INFO - Server initialized for postgresql database
+2025-03-31 20:28:03,689 - INFO - Server listening on port 8080
+2025-03-31 20:28:13,874 - INFO - New connection from 127.0.0.1:50786
+2025-03-31 20:28:14,652 - ERROR - Error handling client 127.0.0.1: syntax error at or near "form"
+LINE 1: select * form users;
+                 ^
+
+2025-03-31 20:28:14,652 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:28:15,686 - INFO - New connection from 127.0.0.1:50788
+2025-03-31 20:28:16,098 - ERROR - Error handling client 127.0.0.1: syntax error at or near "form"
+LINE 1: select * form users;
+                 ^
+
+2025-03-31 20:28:16,098 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:28:16,796 - INFO - New connection from 127.0.0.1:50790
+2025-03-31 20:28:17,105 - ERROR - Error handling client 127.0.0.1: syntax error at or near "form"
+LINE 1: select * form users;
+                 ^
+
+2025-03-31 20:28:17,105 - INFO - Connection from 127.0.0.1 closed
+2025-03-31 20:28:17,752 - INFO - New connection from 127.0.0.1:50792
+2025-03-31 20:28:41,292 - INFO - Connection from 127.0.0.1 closed
