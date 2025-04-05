@@ -4,8 +4,8 @@ from datetime import timedelta
 # Load environment variables or use defaults 
 class Config:
     DB_NAME = os.environ.get('DB_NAME', 'testdb')
-    DB_USER = os.environ.get('DB_USER', 'huyong97')
-    DB_PASSWORD = os.environ.get('DB_PASSWORD', 'password')
+    DB_USER = os.environ.get('DB_USER', 'postgres')
+    DB_PASSWORD = os.environ.get('DB_PASSWORD', 'Naz2004')
     DB_HOST = os.getenv('DB_HOST', 'localhost')
     DB_PORT = os.getenv('DB_PORT', '5432')
 

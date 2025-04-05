@@ -7,7 +7,8 @@ def ddos_protection_middleware(f):
     """Middleware to check for DDoS attacks and log connections."""
     @wraps(f) 
     def decorated_function(*args, **kwargs):
-        client_ip = request.remote_addr 
+        client_ip = request.headers.get("X-Forwarded-For", request.remote_addr)
+        # client_ip = request.remote_addr 
         username = request.args.get('username', 'anonymous')
 
         # Check if IP is blocked 

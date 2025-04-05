@@ -9,11 +9,19 @@ def is_ip_blocked(ip_address):
         cursor.execute(BlockedIP.is_blocked_query(), (ip_address,))
         return cursor.fetchone() is not None 
 
-def log_connection(ip_address, username):
+def log_connection(ip_address, username, query = None):
     """Log a connection attempt and check for suspicious activity"""
     with get_db_cursor() as cursor:
-        # Record connection
-        cursor.execute(ConnectionLog.insert_query(), (ip_address, username))
+
+        if query:
+            cursor.execute("""
+                INSERT INTO connection_log (ip_address, username, query_text)
+                VALUES (%s, %s, %s)
+            """, (ip_address, username, query)
+            )
+        else:
+            # Record connection
+            cursor.execute(ConnectionLog.insert_query(), (ip_address, username))
 
         # Check connection frequency 
         cursor.execute(ConnectionLog.count_recent_query(), (ip_address,))
@@ -68,3 +76,13 @@ def get_protection_stats():
             "blocked_ips": blocked
         }
 
+def get_query_logs(limit=1000):
+    with get_db_cursor() as cursor:
+        cursor.execute("""
+            SELECT username, query_text
+            FROM connection_log
+            WHERE query_text IS NOT NULL
+            ORDER BY timestamp DESC
+            LIMIT %s
+        """, (limit,))
+        return cursor.fetchall()
