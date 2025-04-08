@@ -15,6 +15,16 @@ CREATE TABLE IF NOT EXISTS blocked_ips (
     block_expires TIMESTAMP,
     reason TEXT
 );
+
+CREATE TABLE IF NOT EXISTS query_cost_log (
+    id SERIAL PRIMARY KEY,
+    ip_address VARCHAR(45),
+    query_hash TEXT,
+    normalized_query TEXT,
+    estimated_cost FLOAT,
+    risk_score FLOAT,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 """
 
 class ConnectionLog:
@@ -27,7 +37,7 @@ class ConnectionLog:
             INSERT INTO {ConnectionLog.table_name} (ip_address, username) 
             VALUES (%s, %s)
         """
-    
+
     @staticmethod
     def count_recent_query(minutes=1):
         return f"""
@@ -53,4 +63,24 @@ class BlockedIP:
             VALUES (%s, %s, %s) 
             ON CONFLICT (ip_address) DO UPDATE 
             SET block_expires = %s, reason = %s
+        """
+
+class QueryCostLog:
+    """Model for query cost log entries"""
+    table_name = "query_cost_log"
+    
+    @staticmethod
+    def insert_query():
+        return f"""
+            INSERT INTO {QueryCostLog.table_name} 
+            (ip_address, query_hash, normalized_query, estimated_cost, risk_score) 
+            VALUES (%s, %s, %s, %s, %s)
+        """
+    
+    @staticmethod
+    def get_recent_query_costs(ip_address, minutes=5):
+        return f"""
+            SELECT AVG(estimated_cost), AVG(risk_score) 
+            FROM {QueryCostLog.table_name} 
+            WHERE ip_address = %s AND timestamp > NOW() - INTERVAL '{minutes} minute'
         """
