@@ -15,6 +15,13 @@ CREATE TABLE IF NOT EXISTS blocked_ips (
     block_expires TIMESTAMP,
     reason TEXT
 );
+
+CREATE TABLE IF NOT EXISTS blocked_users (
+    user_id VARCHAR PRIMARY KEY,
+    blocked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    block_expires TIMESTAMP,
+    reason TEXT
+);
 """
 
 class ConnectionLog:
@@ -52,5 +59,25 @@ class BlockedIP:
             INSERT INTO {BlockedIP.table_name} (ip_address, block_expires, reason) 
             VALUES (%s, %s, %s) 
             ON CONFLICT (ip_address) DO UPDATE 
+            SET block_expires = %s, reason = %s
+        """
+
+class BlockedUser:
+    """Model for blocked User addresses"""
+    table_name = "blocked_users"
+    
+    @staticmethod
+    def is_blocked_user():
+        return f"""
+            SELECT 1 FROM {BlockedUser.table_name} 
+            WHERE user_id = %s AND block_expires > NOW()
+        """
+    
+    @staticmethod
+    def block_user():
+        return f"""
+            INSERT INTO {BlockedUser.table_name} (user_id, block_expires, reason) 
+            VALUES (%s, %s, %s) 
+            ON CONFLICT (user_id) DO UPDATE 
             SET block_expires = %s, reason = %s
         """
