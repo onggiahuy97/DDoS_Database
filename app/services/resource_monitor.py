@@ -9,42 +9,62 @@ from config import config
 class ResourceMonitor:
     """Monitor database resources and update client risk profiles"""
     
+    
     @staticmethod
     def get_database_stats():
         """
-        Query pg_stat_statements and other PostgreSQL statistics
-        to get current database load information.
+        Query database statistics without requiring pg_stat_statements.
         """
-        # is_installed, is_enabled = check_pg_stat_statements()
-
-        with get_db_cursor() as cursor:
-            # Check if extension is installed
-            cursor.execute("""
-                SELECT EXISTS (
-                    SELECT 1 FROM pg_available_extensions 
-                    WHERE name = 'pg_stat_statements'
+        try:
+            with get_db_cursor() as cursor:
+                # Get active connections
+                cursor.execute("SELECT count(*) FROM pg_stat_activity WHERE state = 'active'")
+                active_connections = cursor.fetchone()[0]
+                
+                # Get information about currently running queries
+                cursor.execute("""
+                    SELECT COUNT(*), 
+                           AVG(EXTRACT(EPOCH FROM (now() - query_start))),
+                           MAX(EXTRACT(EPOCH FROM (now() - query_start)))
+                    FROM pg_stat_activity 
+                    WHERE state = 'active' 
+                      AND query NOT ILIKE '%pg_stat_activity%'
+                """)
+                row = cursor.fetchone()
+                running_queries = row[0]
+                avg_query_time = row[1] if row[1] is not None else 0
+                max_query_time = row[2] if row[2] is not None else 0
+                
+                # Calculate a simple load factor without pg_stat_statements
+                load_factor = active_connections / max(1, config.MAX_CONNECTIONS)
+                
+                # Record load history
+                cursor.execute(
+                    DatabaseLoadHistory.insert_load_history(),
+                    (active_connections, running_queries, avg_query_time, max_query_time, load_factor)
                 )
-            """)
-            is_installed = cursor.fetchone()[0]
-
-            # Check if extension is enabled
-            cursor.execute("""
-                SELECT EXISTS (
-                    SELECT 1 FROM pg_extension 
-                    WHERE extname = 'pg_stat_statements'
-                )
-            """)
-            is_enabled = cursor.fetchone()[0]
-
-        if not is_enabled:
+                
+                return {
+                    'active_connections': active_connections,
+                    'running_queries': running_queries,
+                    'avg_query_time': avg_query_time,
+                    'max_query_time': max_query_time,
+                    'total_calls': 0,  # No data without pg_stat_statements
+                    'overall_avg_time': 0,  # No data without pg_stat_statements
+                    'load_factor': load_factor
+                }
+        except Exception as e:
+            print(f"Error getting database stats: {e}")
+            # Return default values
             return {
-                'error': 'pg_stat_statements is not enabled',
+                'error': str(e),
                 'active_connections': 0,
                 'running_queries': 0,
                 'avg_query_time': 0,
                 'max_query_time': 0,
                 'load_factor': 1.0
             }
+
         
         with get_db_cursor() as cursor:
             # Get active connections
