@@ -1,11 +1,30 @@
 """Main API endpoint for the application."""
-from flask import Blueprint, jsonify, request 
+from flask import Blueprint, jsonify, request
+import sqlparse 
 from app.database.db import get_db_cursor 
 from app.api.middleware import ddos_protection_middleware
 from app.services.intrusion.classify import is_intrusion
 
 api_bp = Blueprint('api', __name__)
 
+role_permissions = {
+    "admin" : ["SELECT", "INSERT", "UPDATE", "DELETE"],
+    "staff" : ["SELECT", "INSERT", "UPDATE"],
+    "analyst" : ["SELECT"]
+}
+
+def get_command(query):
+    parser = sqlparse.parse(query)
+    if not parser:
+        return None
+
+    if parser[0].tokens:
+        for token in parser[0].tokens:
+            if token.ttype is sqlparse.tokens.DML:
+                return token.value.upper()
+            
+    return None
+    
 @api_bp.route('/customers', methods=['GET'])
 @ddos_protection_middleware
 def get_customers():
@@ -27,6 +46,14 @@ def handle_query():
     """Handle database queries with DDoS Protection"""
     query = request.json.get('query_text')
     user = request.json.get("username")
+    command = get_command(query)
+
+    if command is None:
+        return jsonify({"Error" : "Could not parse the SQL operation"}), 400
+    
+    if user.startswith("admin") or user.startswith("staff") or user.startswith("analyst"):
+        if command not in role_permissions["admin"] or command not in role_permissions["staff"] or command not in role_permissions["analyst"]:
+            return jsonify({"error" : f"{user} cannot perform this operation"}), 400
 
     result = is_intrusion(query, user)
     print(result)

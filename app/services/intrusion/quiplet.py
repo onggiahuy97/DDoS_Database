@@ -119,6 +119,9 @@ def get_conditions(tokens):
 
 # convert a SQL query to a lower dimensonal quiplet
 def to_quiplet(query, schema):
+    print(f"[query]: {query}")
+    if not query or not isinstance(query, str):
+        raise ValueError["[quiplet]: Invalid query: None or non-string brought in"]
 
     # numerical representation of the SQL commands
     command_map = {"SELECT": 0, "INSERT": 1,
@@ -254,6 +257,8 @@ def to_quiplet(query, schema):
                     rel, attr = field.strip().split(".")
                     if rel in rel_idx and attr in attr_idx[rel]:
                         sel_attr[rel_idx[rel]][attr_idx[rel][attr]] = 1
+
+                        
     return [command, prj_rel, prj_attr, sel_rel, sel_attr]
 
 # flatten the quiplet to be used with classifier
