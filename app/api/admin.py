@@ -207,3 +207,54 @@ def update_client_profile(ip_address):
     profile = ResourceMonitor.get_client_profile(ip_address)
     
     return jsonify(profile), 200
+
+@admin_bp.route('/reset-blocked-ips', methods=['POST'])
+def reset_blocked_ips():
+    """Clear all blocked IPs and recent connection logs"""
+    ip_address = request.args.get('ip', None)
+    
+    with get_db_cursor() as cursor:
+        # Clear blocked IPs
+        if ip_address:
+            cursor.execute("DELETE FROM blocked_ips WHERE ip_address = %s", (ip_address,))
+            # Also clear recent connection logs for this IP
+            cursor.execute("""
+                DELETE FROM connection_log 
+                WHERE ip_address = %s 
+                AND timestamp > NOW() - INTERVAL '5 minutes'
+            """, (ip_address,))
+        else:
+            cursor.execute("DELETE FROM blocked_ips") 
+            # Also clear recent connection logs
+            cursor.execute("""
+                DELETE FROM connection_log 
+                WHERE timestamp > NOW() - INTERVAL '5 minutes'
+            """)
+    
+    return jsonify({"message": "All blocked IPs and recent connection logs have been cleared"}), 200
+
+@admin_bp.route('/reset-database', methods=['POST'])
+def reset_database():
+    """Reset all database tables"""
+    from app.database.db import setup_database  # Import here to avoid circular imports
+    
+    with get_db_cursor() as cursor:
+        # Truncate all tables - adjust table names based on your schema
+        tables = [
+            "connection_log", 
+            "blocked_ips", 
+            "query_cost_log", 
+            "client_risk_profiles", 
+            "database_load_history"
+        ]
+        
+        for table in tables:
+            try:
+                cursor.execute(f"TRUNCATE {table} CASCADE")
+            except Exception as e:
+                print(f"Error truncating {table}: {e}")
+    
+    # Reinitialize the database with setup
+    setup_database()
+    
+    return jsonify({"message": "Database has been reset"}), 200

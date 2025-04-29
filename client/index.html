@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>PostgreSQL DDoS Protection Demo</title>
+	<style>
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			margin: 0;
+			padding: 20px;
+			background-color: #f5f7f9;
+			color: #333;
+		}
+
+		.container {
+			max-width: 1200px;
+			margin: 0 auto;
+			background-color: white;
+			border-radius: 8px;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+			padding: 20px;
+		}
+
+		h1 {
+			color: #2c3e50;
+			margin-top: 0;
+			border-bottom: 2px solid #eaecef;
+			padding-bottom: 10px;
+		}
+
+		.tabs {
+			display: flex;
+			border-bottom: 1px solid #ddd;
+			margin-bottom: 20px;
+		}
+
+		.tab {
+			padding: 10px 20px;
+			cursor: pointer;
+			background-color: #f1f1f1;
+			border: 1px solid #ddd;
+			border-bottom: none;
+			margin-right: 5px;
+			border-top-left-radius: 4px;
+			border-top-right-radius: 4px;
+		}
+
+		.tab.active {
+			background-color: white;
+			border-bottom: 1px solid white;
+			margin-bottom: -1px;
+			font-weight: bold;
+		}
+
+		.tab-content {
+			display: none;
+		}
+
+		.tab-content.active {
+			display: block;
+		}
+
+		textarea {
+			width: 100%;
+			height: 100px;
+			margin-bottom: 15px;
+			padding: 10px;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			resize: vertical;
+		}
+
+		button {
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			padding: 10px 15px;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 14px;
+			margin-right: 10px;
+			transition: background-color 0.3s;
+		}
+
+		button:hover {
+			background-color: #45a049;
+		}
+
+		button.danger {
+			background-color: #f44336;
+		}
+
+		button.danger:hover {
+			background-color: #d32f2f;
+		}
+
+		button.warning {
+			background-color: #ff9800;
+		}
+
+		button.warning:hover {
+			background-color: #f57c00;
+		}
+
+		pre {
+			background-color: #f8f9fa;
+			padding: 15px;
+			border-radius: 4px;
+			overflow: auto;
+			max-height: 400px;
+		}
+
+		.card {
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			padding: 15px;
+			margin-bottom: 15px;
+		}
+
+		.card h3 {
+			margin-top: 0;
+			border-bottom: 1px solid #eee;
+			padding-bottom: 10px;
+		}
+
+		.stat-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+			gap: 15px;
+			margin-bottom: 20px;
+		}
+
+		.stat-box {
+			background-color: #f8f9fa;
+			border-radius: 4px;
+			padding: 15px;
+			text-align: center;
+		}
+
+		.stat-box h4 {
+			margin-top: 0;
+			color: #666;
+		}
+
+		.stat-box .value {
+			font-size: 24px;
+			font-weight: bold;
+			color: #2c3e50;
+		}
+
+		.stat-box.critical .value {
+			color: #f44336;
+		}
+
+		.stat-box.warning .value {
+			color: #ff9800;
+		}
+
+		.log-entry {
+			padding: 8px;
+			border-bottom: 1px solid #eee;
+		}
+
+		.log-entry:last-child {
+			border-bottom: none;
+		}
+
+		.risk-low {
+			color: #4CAF50;
+		}
+
+		.risk-medium {
+			color: #ff9800;
+		}
+
+		.risk-high {
+			color: #f44336;
+		}
+
+		#queryLog {
+			max-height: 200px;
+			overflow-y: auto;
+		}
+
+		.query-example {
+			margin-bottom: 15px;
+		}
+
+		.query-example button {
+			display: block;
+			width: 100%;
+			text-align: left;
+			margin-bottom: 5px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h1>PostgreSQL DDoS Protection Demo</h1>
+
+		<div class="tabs">
+			<div class="tab active" data-tab="queryTesting">Query Testing</div>
+			<div class="tab" data-tab="protectionStats">Protection Stats</div>
+			<div class="tab" data-tab="clientProfile">Client Profile</div>
+			<div class="tab" data-tab="loadSimulation">Load Simulation</div>
+		</div>
+
+		<div id="queryTesting" class="tab-content active">
+			<h2>Query Testing</h2>
+			<p>Test different queries and see how the protection system responds.</p>
+
+			<div class="card">
+				<h3>Your SQL Query</h3>
+				<textarea id="sqlQuery" placeholder="Enter your SQL query here...">SELECT * FROM customers LIMIT
+					5</textarea>
+				<button id="runQuery">Run Query</button>
+				<button id="clearResults">Clear Results</button>
+			</div>
+
+			<div class="card">
+				<h3>Example Queries</h3>
+				<div class="query-example">
+					<button class="queryBtn">SELECT * FROM customers WHERE id = 1</button>
+					<small>Safe query with specific ID</small>
+				</div>
+				<div class="query-example">
+					<button class="queryBtn warning">SELECT c.*, b.* FROM connection_log c JOIN blocked_ips b ON
+						c.ip_address = b.ip_address</button>
+					<small>Medium risk query with JOIN</small>
+				</div>
+				<div class="query-example">
+					<button class="queryBtn danger">SELECT * FROM customers c1, customers c2, customers c3 WHERE c1.name
+						LIKE '%a%'</button>
+					<small>High risk query with multiple joins and LIKE</small>
+				</div>
+				<div class="query-example">
+					<button class="queryBtn danger">SELECT pg_sleep(5), * FROM customers</button>
+					<small>Slow query with sleep function</small>
+				</div>
+			</div>
+
+			<div class="card">
+				<h3>Query Log</h3>
+				<div id="queryLog"></div>
+			</div>
+
+			<div class="card">
+				<h3>Results</h3>
+				<pre id="queryResults">Run a query to see results...</pre>
+			</div>
+		</div>
+
+		<div id="protectionStats" class="tab-content">
+			<h2>Protection Statistics</h2>
+
+			<button id="refreshStats">Refresh Stats</button>
+
+			<div class="card">
+				<h3>DDOS Protection Overview</h3>
+				<div class="stat-grid">
+					<div class="stat-box">
+						<h4>Blocked IPs</h4>
+						<div class="value" id="blockedIPsCount">-</div>
+					</div>
+					<div class="stat-box">
+						<h4>Active Connections</h4>
+						<div class="value" id="activeConnections">-</div>
+					</div>
+					<div class="stat-box">
+						<h4>Running Queries</h4>
+						<div class="value" id="runningQueries">-</div>
+					</div>
+					<div class="stat-box">
+						<h4>Load Factor</h4>
+						<div class="value" id="loadFactor">-</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="card">
+				<h3>Most Active IPs</h3>
+				<pre id="activeIPs">Loading...</pre>
+			</div>
+
+			<div class="card">
+				<h3>Blocked IPs</h3>
+				<pre id="blockedIPs">Loading...</pre>
+			</div>
+
+			<div class="card">
+				<h3>Query Statistics</h3>
+				<h4>Highest Cost Queries</h4>
+				<pre id="highCostQueries">Loading...</pre>
+
+				<h4>Highest Risk Queries</h4>
+				<pre id="highRiskQueries">Loading...</pre>
+			</div>
+		</div>
+
+		<div class="card">
+			<h3>Admin Actions</h3>
+			<p><strong>Warning:</strong> These actions are destructive and cannot be undone.</p>
+
+			<div style="display: flex; gap: 10px; margin-top: 15px;">
+				<button id="resetBlockedIPs" class="warning">Reset All Blocked IPs</button>
+				<button id="resetDatabase" class="danger">Reset Entire Database</button>
+			</div>
+		</div>
+
+		<div id="clientProfile" class="tab-content">
+			<h2>Client Risk Profile</h2>
+
+			<div class="card">
+				<h3>Your Profile</h3>
+				<button id="refreshProfile">Refresh Profile</button>
+
+				<div class="stat-grid">
+					<div class="stat-box">
+						<h4>Risk Score</h4>
+						<div class="value" id="riskScore">-</div>
+					</div>
+					<div class="stat-box">
+						<h4>Total Queries</h4>
+						<div class="value" id="totalQueries">-</div>
+					</div>
+					<div class="stat-box">
+						<h4>Avg Query Cost</h4>
+						<div class="value" id="avgQueryCost">-</div>
+					</div>
+					<div class="stat-box">
+						<h4>Timeout Multiplier</h4>
+						<div class="value" id="timeoutMultiplier">-</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="card">
+				<h3>Modify Profile</h3>
+				<p>Manually adjust your risk profile:</p>
+
+				<label for="profileTimeout">Timeout Multiplier:</label>
+				<input type="range" id="profileTimeout" min="0.1" max="2" step="0.1" value="1">
+				<span id="profileTimeoutValue">1.0</span>
+				<p><small>Lower values = stricter timeouts, higher values = more lenient timeouts</small></p>
+
+				<button id="updateProfile">Update Profile</button>
+			</div>
+
+			<div class="card">
+				<h3>Recent Queries</h3>
+				<pre id="recentQueries">Loading...</pre>
+			</div>
+		</div>
+
+		<div id="loadSimulation" class="tab-content">
+			<h2>Load Simulation</h2>
+			<p>Simulate high traffic conditions to test protection mechanisms.</p>
+
+			<div class="card">
+				<h3>Query Flood</h3>
+				<p>Run multiple queries in rapid succession:</p>
+
+				<label for="queryCount">Number of Queries:</label>
+				<input type="number" id="queryCount" min="1" max="50" value="10">
+
+				<label for="queryDelay">Delay Between Queries (ms):</label>
+				<input type="number" id="queryDelay" min="0" max="1000" value="200">
+
+				<div class="query-example">
+					<button id="runSafeFlood" class="warning">Run Safe Query Flood</button>
+					<small>Flood with safe queries (SELECT * FROM customers WHERE id = $i)</small>
+				</div>
+
+				<div class="query-example">
+					<button id="runRiskyFlood" class="danger">Run Risky Query Flood</button>
+					<small>Flood with more complex queries</small>
+				</div>
+			</div>
+
+			<div class="card">
+				<h3>Connection Flood</h3>
+				<p>Make many connections in rapid succession:</p>
+
+				<label for="connectionCount">Number of Connections:</label>
+				<input type="number" id="connectionCount" min="1" max="50" value="15">
+
+				<label for="connectionDelay">Delay Between Connections (ms):</label>
+				<input type="number" id="connectionDelay" min="0" max="1000" value="100">
+
+				<button id="runConnectionFlood" class="danger">Run Connection Flood</button>
+			</div>
+
+			<div class="card">
+				<h3>Simulation Log</h3>
+				<pre id="simulationLog">Ready to run simulations...</pre>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		// Tab switching functionality
+		document.querySelectorAll('.tab').forEach(tab => {
+			tab.addEventListener('click', () => {
+				document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+				document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+				tab.classList.add('active');
+				document.getElementById(tab.dataset.tab).classList.add('active');
+			});
+		});
+
+		// Define API base URL (adjust as needed)
+		const API_BASE_URL = 'http://localhost:5002';
+
+		// Get client IP (in real app, this would be from server)
+		const clientIP = '127.0.0.1';
+
+		// Common function to make API calls
+		async function callAPI(endpoint, method = 'GET', data = null) {
+			try {
+				const options = {
+					method,
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				};
+
+				if (data) {
+					options.body = JSON.stringify(data);
+				}
+
+				const response = await fetch(`${API_BASE_URL}${endpoint}`, options);
+				return await response.json();
+			} catch (error) {
+				console.error('API Error:', error);
+				return {error: error.message};
+			}
+		}
+
+		// Format JSON for display
+		function formatJSON(obj) {
+			return JSON.stringify(obj, null, 2);
+		}
+
+		// Add log entry
+		function addLogEntry(message, type = 'info') {
+			const log = document.getElementById('queryLog');
+			const entry = document.createElement('div');
+			entry.className = `log-entry ${type}`;
+			entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+			log.insertBefore(entry, log.firstChild);
+		}
+
+		// Add simulation log entry
+		function addSimulationLogEntry(message) {
+			const log = document.getElementById('simulationLog');
+			log.textContent = `[${new Date().toLocaleTimeString()}] ${message}\n${log.textContent}`;
+		}
+
+		// Query Testing
+		document.getElementById('runQuery').addEventListener('click', async () => {
+			const query = document.getElementById('sqlQuery').value.trim();
+
+			if (!query) {
+				alert('Please enter a SQL query');
+				return;
+			}
+
+			addLogEntry(`Running query: ${query}`);
+
+			const result = await callAPI('/query', 'POST', {query});
+
+			document.getElementById('queryResults').textContent = formatJSON(result);
+
+			if (result.error) {
+				addLogEntry(`Query failed: ${result.error}`, 'risk-high');
+			} else {
+				addLogEntry('Query executed successfully', 'risk-low');
+			}
+
+			// Refresh profile after query
+			refreshClientProfile();
+		});
+
+		document.getElementById('clearResults').addEventListener('click', () => {
+			document.getElementById('queryResults').textContent = 'Run a query to see results...';
+		});
+
+		// Example query buttons
+		document.querySelectorAll('.queryBtn').forEach(btn => {
+			btn.addEventListener('click', () => {
+				document.getElementById('sqlQuery').value = btn.textContent;
+			});
+		});
+
+		// Protection Stats
+		async function refreshProtectionStats() {
+			// Get DDoS protection stats
+			const protectionStats = await callAPI('/admin/stats');
+
+			if (protectionStats.error) {
+				alert(`Error fetching protection stats: ${protectionStats.error}`);
+				return;
+			}
+
+			// Update stats display
+			document.getElementById('blockedIPsCount').textContent = protectionStats.blocked_ips?.length || 0;
+			document.getElementById('activeIPs').textContent = formatJSON(protectionStats.most_active_ips || []);
+			document.getElementById('blockedIPs').textContent = formatJSON(protectionStats.blocked_ips || []);
+
+			// Get query stats
+			const queryStats = await callAPI('/admin/query-stats');
+
+			if (!queryStats.error) {
+				document.getElementById('highCostQueries').textContent = formatJSON(queryStats.high_cost_queries || []);
+				document.getElementById('highRiskQueries').textContent = formatJSON(queryStats.high_risk_queries || []);
+			}
+
+			// Get resource stats
+			const resourceStats = await callAPI('/admin/resource-stats');
+
+			if (!resourceStats.error) {
+				const currentStats = resourceStats.current_stats || {};
+				document.getElementById('activeConnections').textContent = currentStats.active_connections || 0;
+				document.getElementById('runningQueries').textContent = currentStats.running_queries || 0;
+				document.getElementById('loadFactor').textContent = (currentStats.load_factor || 0).toFixed(2);
+
+				// Change color based on load
+				const loadFactor = parseFloat(currentStats.load_factor || 0);
+				const loadElement = document.getElementById('loadFactor').parentElement;
+
+				loadElement.className = 'value';
+				if (loadFactor > 1.5) {
+					loadElement.classList.add('critical');
+				} else if (loadFactor > 0.8) {
+					loadElement.classList.add('warning');
+				}
+			}
+		}
+
+		document.getElementById('refreshStats').addEventListener('click', refreshProtectionStats);
+
+		// Client Profile
+		async function refreshClientProfile() {
+			const profile = await callAPI(`/admin/client-profile/${clientIP}`);
+
+			if (profile.error) {
+				// If profile doesn't exist yet, may need to run some queries first
+				return;
+			}
+
+			// Update profile display
+			document.getElementById('riskScore').textContent = profile.risk_score?.toFixed(2) || '0.00';
+			document.getElementById('totalQueries').textContent = profile.total_queries || 0;
+			document.getElementById('avgQueryCost').textContent = profile.avg_query_cost?.toFixed(2) || '0.00';
+			document.getElementById('timeoutMultiplier').textContent = profile.timeout_multiplier?.toFixed(2) || '1.00';
+
+			// Color code risk score
+			const riskScore = parseFloat(profile.risk_score || 0);
+			const riskElement = document.getElementById('riskScore');
+
+			riskElement.className = 'value';
+			if (riskScore > 0.7) {
+				riskElement.classList.add('risk-high');
+			} else if (riskScore > 0.3) {
+				riskElement.classList.add('risk-medium');
+			} else {
+				riskElement.classList.add('risk-low');
+			}
+
+			// Update recent queries
+			if (profile.recent_queries) {
+				document.getElementById('recentQueries').textContent = formatJSON(profile.recent_queries);
+			}
+		}
+
+		document.getElementById('refreshProfile').addEventListener('click', refreshClientProfile);
+
+		// Update profile timeout slider display
+		document.getElementById('profileTimeout').addEventListener('input', (e) => {
+			document.getElementById('profileTimeoutValue').textContent = e.target.value;
+		});
+
+		// Update profile
+		document.getElementById('updateProfile').addEventListener('click', async () => {
+			const timeoutMultiplier = parseFloat(document.getElementById('profileTimeout').value);
+
+			const result = await callAPI(`/admin/client-profile/${clientIP}`, 'PUT', {
+				timeout_multiplier: timeoutMultiplier,
+				notes: `Manually updated at ${new Date().toLocaleString()}`
+			});
+
+			if (result.error) {
+				alert(`Error updating profile: ${result.error}`);
+			} else {
+				alert('Profile updated successfully');
+				refreshClientProfile();
+			}
+		});
+
+		// Load Simulation
+		document.getElementById('runSafeFlood').addEventListener('click', async () => {
+			const count = parseInt(document.getElementById('queryCount').value);
+			const delay = parseInt(document.getElementById('queryDelay').value);
+
+			addSimulationLogEntry(`Starting safe query flood: ${count} queries with ${delay}ms delay`);
+
+			for (let i = 1; i <= count; i++) {
+				addSimulationLogEntry(`Running query ${i}/${count}`);
+
+				const query = `SELECT * FROM customers WHERE id = ${i}`;
+				const result = await callAPI('/query', 'POST', {query});
+
+				if (result.error) {
+					addSimulationLogEntry(`Query ${i} failed: ${result.error}`);
+				}
+
+				// Wait for delay
+				if (i < count) {
+					await new Promise(resolve => setTimeout(resolve, delay));
+				}
+			}
+
+			addSimulationLogEntry(`Safe query flood completed`);
+			refreshProtectionStats();
+			refreshClientProfile();
+		});
+
+		document.getElementById('runRiskyFlood').addEventListener('click', async () => {
+			const count = parseInt(document.getElementById('queryCount').value);
+			const delay = parseInt(document.getElementById('queryDelay').value);
+
+			// Array of increasingly complex queries
+			// Replace this in your HTML
+			const riskyQueries = [
+				"SELECT * FROM customers WHERE name LIKE '%a%'",
+				"SELECT * FROM connection_log c JOIN blocked_ips b ON c.ip_address = b.ip_address", // Modified
+				"SELECT * FROM customers ORDER BY RANDOM() LIMIT 10",
+				"SELECT c1.*, c2.* FROM connection_log c1, connection_log c2 WHERE c1.id = c2.id", // Modified
+				"SELECT pg_sleep(0.1), * FROM customers LIMIT 5"
+			];
+
+			addSimulationLogEntry(`Starting risky query flood: ${count} queries with ${delay}ms delay`);
+
+			for (let i = 1; i <= count; i++) {
+				// Pick a random query from the list
+				const query = riskyQueries[i % riskyQueries.length];
+				addSimulationLogEntry(`Running risky query ${i}/${count}`);
+
+				const result = await callAPI('/query', 'POST', {query});
+
+				if (result.error) {
+					addSimulationLogEntry(`Query ${i} failed: ${result.error}`);
+				}
+
+				// Wait for delay
+				if (i < count) {
+					await new Promise(resolve => setTimeout(resolve, delay));
+				}
+			}
+
+			addSimulationLogEntry(`Risky query flood completed`);
+			refreshProtectionStats();
+			refreshClientProfile();
+		});
+
+		// Admin reset functions
+		// document.getElementById('resetBlockedIPs').addEventListener('click', async () => {
+		// 	if (confirm('Are you sure you want to clear all blocked IPs? This action cannot be undone.')) {
+		// 		const result = await callAPI('/admin/reset-blocked-ips', 'POST');
+		// 		if (result.error) {
+		// 			alert(`Error: ${result.error}`);
+		// 		} else {
+		// 			alert(result.message || 'All blocked IPs have been cleared');
+		// 			refreshProtectionStats();
+		// 		}
+		// 	}
+		// });
+		document.getElementById('resetBlockedIPs').addEventListener('click', async () => {
+			if (confirm('Are you sure you want to clear all blocked IPs? This action cannot be undone.')) {
+				// Get client IP (in a real app, you might want to allow specifying an IP)
+				const ip = clientIP; // or prompt user for IP
+
+				const result = await callAPI(`/admin/reset-blocked-ips?ip=${ip}`, 'POST');
+				if (result.error) {
+					alert(`Error: ${result.error}`);
+				} else {
+					alert(result.message || 'All blocked IPs have been cleared');
+					refreshProtectionStats();
+
+					// Add a delay before making next request to ensure the reset takes effect
+					await new Promise(resolve => setTimeout(resolve, 1000));
+				}
+			}
+		});
+		document.getElementById('resetDatabase').addEventListener('click', async () => {
+			if (confirm('WARNING: This will reset ALL data in the database! Are you absolutely sure?')) {
+				if (confirm('FINAL WARNING: This is destructive and will remove all collected data. Continue?')) {
+					const result = await callAPI('/admin/reset-database', 'POST');
+					if (result.error) {
+						alert(`Error: ${result.error}`);
+					} else {
+						alert(result.message || 'Database has been reset successfully');
+						// Refresh all data
+						refreshProtectionStats();
+						refreshClientProfile();
+					}
+				}
+			}
+		});
+
+		document.getElementById('runConnectionFlood').addEventListener('click', async () => {
+			const count = parseInt(document.getElementById('connectionCount').value);
+			const delay = parseInt(document.getElementById('connectionDelay').value);
+
+			addSimulationLogEntry(`Starting connection flood: ${count} connections with ${delay}ms delay`);
+
+			// Use /customers endpoint to simulate connections
+			const promises = [];
+
+			for (let i = 1; i <= count; i++) {
+				promises.push((async () => {
+					addSimulationLogEntry(`Connection ${i}/${count}`);
+
+					try {
+						// Add a random username parameter to avoid caching
+						const result = await callAPI(`/customers?username=user${Math.random()}`);
+
+						if (result.error) {
+							addSimulationLogEntry(`Connection ${i} failed: ${result.error}`);
+						}
+					} catch (error) {
+						addSimulationLogEntry(`Connection ${i} error: ${error.message}`);
+					}
+
+					// Wait for delay
+					await new Promise(resolve => setTimeout(resolve, delay));
+				})());
+			}
+
+			// Execute all connection requests
+			await Promise.all(promises);
+
+			addSimulationLogEntry(`Connection flood completed`);
+			refreshProtectionStats();
+			refreshClientProfile();
+		});
+
+		// Initialize the page
+		refreshProtectionStats();
+		refreshClientProfile();
+	</script>
+</body>
+
+</html>
