@@ -1,5 +1,5 @@
 import sqlparse
-from sqlparse.sql import IdentifierList, Identifier, Where, Comparison
+from sqlparse.sql import IdentifierList, Identifier, Where, Comparison, Function
 from sqlparse.tokens import Keyword, DML
 
 # schema of the database that is being worked with
@@ -90,9 +90,10 @@ def get_select_attr(tokens):
             elif isinstance(token, Identifier):
                 val = token.get_real_name()
                 fields.append(f"{current_table}.{val}")
-            
-            # is this na valid token type and is it the * symbol?
-            elif token.ttype and token.value == "*":
+
+            # is this not valid token type and is it the * symbol?
+            # or is this a function like COUNT or other aggregation?
+            elif (token.ttype and token.value == "*") or (isinstance(token, Function)):
                 fields.append("*")
 
     return fields

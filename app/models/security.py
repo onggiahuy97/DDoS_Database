@@ -9,6 +9,16 @@ CREATE TABLE IF NOT EXISTS connection_log (
     query_count INTEGER DEFAULT 1
 );
 
+CREATE TABLE IF NOT EXISTS user_logs (
+    id SERIAL PRIMARY KEY,
+    ip_address VARCHAR(45),
+    username VARCHAR(100),
+    query_text TEXT,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    query_count INTEGER DEFAULT 1,
+    executed BOOLEAN
+);
+
 CREATE TABLE IF NOT EXISTS blocked_ips (
     ip_address VARCHAR(45) PRIMARY KEY,
     blocked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -33,6 +43,24 @@ class ConnectionLog:
         return f"""
             INSERT INTO {ConnectionLog.table_name} (ip_address, username) 
             VALUES (%s, %s)
+        """
+    
+    @staticmethod
+    def count_recent_query(minutes=1):
+        return f"""
+            SELECT COUNT(*) FROM {ConnectionLog.table_name} 
+            WHERE ip_address = %s AND timestamp > NOW() - INTERVAL '{minutes} minute'
+        """
+
+class UserLog:
+    """Model for connection log entries"""
+    table_name = "user_logs"
+    
+    @staticmethod
+    def insert_query():
+        return f"""
+            INSERT INTO {UserLog.table_name} (ip_address, username, query_text, executed) 
+            VALUES (%s, %s, %s, %s)
         """
     
     @staticmethod
