@@ -22,7 +22,7 @@ def get_command(query):
 
     if parser[0].tokens:
         for token in parser[0].tokens:
-            if token.ttype is sqlparse.tokens.DML:
+            if token.ttype in (sqlparse.tokens.DML, sqlparse.tokens.DDL):
                 return token.value.upper()
             
     return None
@@ -109,7 +109,6 @@ def handle_query_ids():
             log_query(username=user, query=query, executed=True, ip_address=client_ip)
             with get_db_cursor() as cursor:
                 cursor.execute(query)
-
                 if query.strip().upper().startswith('SELECT'):
                     columns = [desc[0] for desc in cursor.description]
                     results = []
@@ -117,6 +116,8 @@ def handle_query_ids():
                         results.append(dict(zip(columns, row)))
                     return jsonify({"results": results}), 200
                 else:
-                    return jsonify({"status": "Query executed successfully"}), 200
+                    rows_affected = cursor.rowcount
+                    return jsonify({"status": f"{command} was executed successfully",
+                                    "rows_affected" : rows_affected}), 200
         except Exception as e:
             return jsonify({"error": str(e)}), 500

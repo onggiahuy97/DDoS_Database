@@ -91,10 +91,22 @@ def get_select_attr(tokens):
                 val = token.get_real_name()
                 fields.append(f"{current_table}.{val}")
 
-            # is this not valid token type and is it the * symbol?
-            # or is this a function like COUNT or other aggregation?
-            elif (token.ttype and token.value == "*") or (isinstance(token, Function)):
+            # # is this not valid token type and is it the * symbol?
+            # # or is this a function like COUNT or other aggregation?
+            # elif (token.ttype and token.value == "*") or (isinstance(token, Function)):
+            #     fields.append("*")
+
+            elif token.ttype and token.value == "*":
+                # Handles SELECT * queries
                 fields.append("*")
+
+            elif isinstance(token, Function):
+                # Handles COUNT(email), AVG(number), etc.
+                func_name = token.get_name()
+                if func_name:
+                    fields.append(f"FUNC_{func_name.upper()}")
+                else:
+                    fields.append("FUNC_UNKNOWN")
 
     return fields
 
@@ -128,6 +140,11 @@ def to_quiplet(query, schema):
     command_map = {"SELECT": 0, "INSERT": 1,
                    "UPDATE" : 2, "DELETE" : 3,
                    "CREATE" : 4, "DROP" : 5}
+    function_map = {
+            "COUNT": 0, "SUM": 1, "AVG": 2,
+            "MIN": 3, "MAX": 4, "NOW": 5,
+            "UPPER": 6, "LOWER": 7}
+
     
     # parse and extract the tokens and the command being used
     tokens, command_type = get_tokens(query)
@@ -165,6 +182,8 @@ def to_quiplet(query, schema):
     # what tables are involved in WHERE
     sel_rel = [0] * len(schema)
 
+    fctn = [0] * len(function_map)
+
     # query token attributes denotation
     if command_type == "SELECT":
         # get the selection attribute names
@@ -185,6 +204,10 @@ def to_quiplet(query, schema):
         else:
             # go through each field
             for field in select_fields:
+                if field.startswith("FUNC_"):
+                     name = field.split("_", 1)[1]
+                     if name in function_map:
+                         fctn[function_map[name]] = 1
                 # check if dot notation is being used in SELECT
                 # attributes
                 if "." in field:
@@ -260,7 +283,7 @@ def to_quiplet(query, schema):
                         sel_attr[rel_idx[rel]][attr_idx[rel][attr]] = 1
 
                         
-    return [command, prj_rel, prj_attr, sel_rel, sel_attr]
+    return [command, prj_rel, prj_attr, sel_rel, sel_attr, fctn]
 
 # flatten the quiplet to be used with classifier
 def flatten_quiplet(quiplet):
@@ -274,6 +297,7 @@ def flatten_quiplet(quiplet):
 
     for row in quiplet[4]:
         flat.extend(row)
+    flat.extend(quiplet[5])
     
     return flat
 
