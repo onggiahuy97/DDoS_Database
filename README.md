@@ -332,15 +332,19 @@ The protection system adds minimal overhead to normal database operations:
 - Client profiles are cached to reduce lookup times
 - Adaptive timeouts prevent resource exhaustion
 
-## Contributing
+## Contributors
 
-Contributions are welcome! Please feel free to submit pull requests.
+**Huy Ong**
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+In this PostgreSQL DDoS protection system, my primary contributions focused on designing and implementing the core protection mechanisms and resource control components. Specifically, I developed:
+
+* The query analysis engine that performs pre-execution risk assessment using normalized patterns and EXPLAIN cost estimation
+* The adaptive resource control system that dynamically adjusts statement timeouts based on client risk profiles and database load
+* The client profiling mechanism that tracks and updates risk scores for each connecting IP
+* The admin API endpoints that provide monitoring capabilities and system statistics
+
+I implemented these components using Flask, Psycopg2, and SQLAlchemy, focusing on maintaining low overhead (<5%) while providing robust protection against various query-based attack vectors. My work included designing the risk scoring algorithm, developing the dynamic timeout calculation formula, and implementing the connection logging and blocking mechanisms.
+
 
 ## License
 
