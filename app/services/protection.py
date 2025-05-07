@@ -1,7 +1,7 @@
 from datetime import datetime 
 from config import config
 from app.database.db import get_db_cursor
-from app.models.security import ConnectionLog, BlockedIP
+from app.models.security import ConnectionLog, BlockedIP, UserLog
 
 def is_ip_blocked(ip_address):
     """Check if an IP is currently blocked"""
@@ -68,3 +68,10 @@ def get_protection_stats():
             "blocked_ips": blocked
         }
 
+def log_query(ip_address, username, query, executed):
+    """Log a user query when executed"""
+    with get_db_cursor() as cursor:
+        # Record query
+        cursor.execute(UserLog.insert_query(), (ip_address, username, query, executed))
+
+        return True 
