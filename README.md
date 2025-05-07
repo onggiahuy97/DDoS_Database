@@ -343,7 +343,17 @@ In this PostgreSQL DDoS protection system, my primary contributions focused on d
 * The client profiling mechanism that tracks and updates risk scores for each connecting IP
 * The admin API endpoints that provide monitoring capabilities and system statistics
 
-I implemented these components using Flask, Psycopg2, and SQLAlchemy, focusing on maintaining low overhead (<5%) while providing robust protection against various query-based attack vectors. My work included designing the risk scoring algorithm, developing the dynamic timeout calculation formula, and implementing the connection logging and blocking mechanisms.
+I implemented these components using Flask, Psycopg2, and SQLAlchemy, focusing on maintaining low overhead (<5%) while providing robust protection against various query-based attack vectors. My work included designing the risk scoring algorithm, developing the dynamic timeout calculation formula, and implementing the connection logging and blocking mechanisms. 
+
+**Eshaq Jamdar**
+
+For this project, my contribution was everything in regards to intrusion detection. I developed the /query-ids endpoint that determines if a user is allowed to execute a query or not. This required having to develop helper functions under app/services/intrusion to conduct an intrusion check. Specifically, 
+
+* I implemented the query detection method from Ramachandran et al. \cite{ramachandran2017}, which converts SQL queries into numerical feature vectors (quiplets) based on the command type, accessed tables, and columns.
+* I extended the feature vector to also include which aggregation functions (SUM, COUNT, etc) are used in the query.
+* I created the \texttt{/query-ids} endpoint, which performs a quick access-level check for users before loading the full SVM classifier—saving time and computational resources.
+* This endpoint also uses the classifier in \texttt{classify.py} to check if a query is allowed. If a user fails this check three times, they are temporarily banned for one hour.
+* A live query log tracks all executed queries, both valid and suspicious, for auditing and further analysis.
 
 
 ## License
